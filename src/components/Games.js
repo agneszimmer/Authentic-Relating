@@ -11,9 +11,8 @@ const Games = () => {
     const [error, setError] = useState();
 
     useEffect(() => {
-        setLoading(true);
-        client
-        .getEntries({content_type: 'arg'})      
+        fetch("http://localhost:3333/")     //axios
+        setLoading(true); 
         .then((response) => {
             setArticles(response.items)
             setLoading(false)

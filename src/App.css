@@ -1,38 +1,126 @@
-.App {
+* {
+  box-sizing: border-box;
+}
+
+.active {
+  font-weight: 800;
+}
+
+body {
   text-align: center;
+  padding: 0;
+  margin: 0;
+  font-family: Raleway, sans-serif;
+  background-color: #fdfffb;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: white;
+  margin-top: 3rem;
+  font-size: 3.2rem;
+  text-shadow: -0.1em -0.1em 0.2em black, 0.1em 0.1em 0.2em black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  padding-top: 3rem;
+  font-size: 2.8rem;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+h3 {
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+  text-shadow: -0.1em -0.1em 0.2em black, 0.1em 0.1em 0.2em black;
+}
+
+h6 {
+  color: white;
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+}
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 18rem;
+  top: 13.2rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.container {
+  max-width: none !important;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+  background-image: url(./pictures/faces.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 50rem;
 }
 
-.App-link {
-  color: #61dafb;
+.loadingImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  margin-top: 4rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.about {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  margin-top: 4rem;
+}
+
+.gamesContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.singleGameContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  margin-top: 5rem;
+  text-align: start;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  text-decoration: none !important;
+  background-color: #fdfffb;
+}
+
+/* Games Cards */
+
+.card {
+  display: grid;
+  min-width: 16rem !important;
+  height: 28rem;
+  margin: 2rem;
+}
+
+.datesImage {
+  display: block;
+  margin-left: 5%;
+  margin-right: auto;
+  width: 40%;
+  margin-top: 2rem;
+}
+
+.datesContainer {
+  background-image: url(./pictures/Authentic_Relating.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 43rem;
 }

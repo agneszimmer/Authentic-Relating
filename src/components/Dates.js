@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import grouppicture from "../pictures/Authentic_Relating.webp";
 
 const Dates = () => {
-    return (
-        <div> 
+  return (
+    <div className="datesContainer">
+      <h2>Workshop Dates</h2>
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Dates
+export default Dates;

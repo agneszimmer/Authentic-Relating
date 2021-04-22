@@ -1,12 +1,7 @@
+import kevin from "../pictures/home alone.jpg";
+
 const NotFound = () => {
-  return (
-    <div>
-      <img
-        src='./pictures/home alone.jpg'
-        alt='sometimes it is not easy to connect'
-      />
-    </div>
-  );
+  return <div>{/* <img src={kevin} alt="alone" width="85%" /> */}</div>;
 };
 
 export default NotFound;

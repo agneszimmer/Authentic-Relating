@@ -1,15 +1,27 @@
-import bild from '../pictures/EcstaticDance.png';
+import "../App.css";
 
 const Home = ({ header, img }) => {
-    return (
-      <div>
-        <h1 style={{ textAlign: 'center' }}>Authentic Revolution</h1>
-        <h3 style={{ textAlign: 'center' }}>Die Kunst in Beziehung zu gehen</h3>
-        <p>Authentische Begegnung auf Herzebene, eingebettet in einen spielerischen Rahmen, um einen Schutzraum sowie die Möglichkeit zu geben, in der 
-          Leichtigkeit des Spiels zu erforschen, wer und wie du bist, was du fühlst, was du dir wünschst, wie du andere siehst und von anderen gesehen wirst. </p>
-        <img src={bild} alt='circling' width='100%' />
+  return (
+    <div className="container fluid">
+      <div id="overlay">
+        <div className="home">
+          <h1>Authentic Revolution </h1>
+        </div>
+        <div className="home">
+          <h3>
+            Skip the small talk and dive into meaningful human connection.
+          </h3>
+        </div>
+        <div className="home">
+          <h6>
+            Challenge our social patterns . Explore new ways of being with one
+            another . Co-create meaningful interactions{" "}
+          </h6>
+          <h6> Remember our fundamental similarity: BEING HUMAN</h6>
+        </div>
       </div>
-    );
-  };
-  
-  export default Home;
+    </div>
+  );
+};
+
+export default Home;

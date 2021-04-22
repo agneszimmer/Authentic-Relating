@@ -1,50 +1,84 @@
-import { useState, useEffect } from 'react';
-import client from '../contentful/client';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import circle from '../pictures/circle.png'
-import './Games.css'
+/* import axios from "axios"; */
+import "../App.css";
+
+import { useState, useEffect } from "react";
+
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import { useParams, Link } from "react-router-dom";
+
+import circle from "../pictures/circle.png";
 
 const Games = () => {
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState();
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState();
 
-    useEffect(() => {
-        fetch("http://localhost:3333/")     //axios
+  useEffect(() => {
+    const getGames = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:3333/games");
+        const jsonData = await response.json();
+        console.log(jsonData);
+
+        if (response) {
+          setGames(jsonData);
+        }
+      } catch (err) {
+        console.log(err.message);
+      }
+      setLoading(false);
+    };
+    getGames();
+  }, []);
+
+  /*   useEffect(() => {
+    const getGames = async () => {
+      const res = await axios
+        .get("http://localhost:3333/")
+        .catch((error) => console.log(error.message));
+    };
+    getGames();
+    console.log(res);
+  }, []);   
+  
+  useEffect(() => {
+        fetch("http://localhost:3333/")     
         setLoading(true); 
         .then((response) => {
             setArticles(response.items)
             setLoading(false)
         })
-        .catch(err => console.log(err))
-    }, []);
+        .catch(err => console.log(err.message))
+    }, []); */
 
-    if (loading) return <img className="center" src={circle} alt='loading...' />     //spinner einfügen
-    if (error) return <div>Error: {error.message}</div>
+  if (loading)
+    return <img className="loadingImage" src={circle} alt="loading..." />; //spinner einfügen
+  if (error) return <div>Error: {error.message}</div>;
 
-    console.log(articles)
+  const ParamsGame = (props) => {
+    const { game_id } = useParams();
+  };
 
-    return (
-        <div className='container'>
-            {articles &&
-            articles.map(article => (
-            <Card key={article.sys.id} style={{ width: '18rem' }}>
-                {console.log(article.fields.picture.fields.file.url)}
-            <Card.Img variant="top" src={article.fields.picture.fields.file.url} />
+  return (
+    <div className="gamesContainer fluid">
+      {games &&
+        games.map((game) => (
+          <Card key={game.game_id} style={{ width: "18rem" }}>
+            {console.log(game.image)}
+            <Card.Img variant="top" src="{games.image}" />
             <Card.Body>
-              <Card.Title>{article.fields.title}</Card.Title>
-              <Card.Text>{article.fields.directions}</Card.Text>
-              <Button href="#" variant="primary">further</Button>
+              <Card.Title>{game.title}</Card.Title>
+              <Card.Text>{game.teaser}</Card.Text>
+              <Link to={`/games/${game.game_id}`}>
+                <Button variant="light">play</Button>
+              </Link>
             </Card.Body>
           </Card>
-               )
-               
-
-           )} 
-         
-        </div>
-    )
-} 
+        ))}
+    </div>
+  );
+};
 
 export default Games;

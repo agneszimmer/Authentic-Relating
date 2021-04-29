@@ -8,6 +8,7 @@ import Games from "./components/Games";
 import SingleGame from "./components/SingleGame";
 import NotFound from "./components/NotFound";
 import Upload from "./components/Upload";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
@@ -19,7 +20,8 @@ const App = () => {
         <Route path="/dates" component={Dates}></Route>
         <Route exact path="/games" component={Games}></Route>
         <Route path="/games/:game_id" component={SingleGame}></Route>
-        <Route path="/:upload" component={Upload}></Route>
+        <Route path="/upload" component={Upload}></Route>
+        <Route path="/contact" component={Contact}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
     </div>

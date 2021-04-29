@@ -1,6 +1,10 @@
 import "../App.css";
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 const Home = ({ header, img }) => {
+  let history = useHistory();
+
   return (
     <div className="container fluid">
       <div id="overlay">
@@ -19,6 +23,13 @@ const Home = ({ header, img }) => {
           </h6>
           <h6> Remember our fundamental similarity: BEING HUMAN</h6>
         </div>
+        <br></br>
+        <button onClick={() => {
+          history.push("/contact");
+        }}
+        >
+          CONTACT US
+        </button>
       </div>
     </div>
   );

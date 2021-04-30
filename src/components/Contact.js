@@ -1,7 +1,14 @@
 import { useState } from 'react';
-import MapTabs from './MapTabs';
+import Map from '../components/Map'
 
 const Contact = () => {
+  const center= {
+    id: 1,
+      name: 'Berlin',
+      lat: 52.518611,
+      lng: 13.408333,
+      popup: 'Authentic Relating Games Berlin'
+  }
   const places = [
     { 
       id: 1,
@@ -26,6 +33,7 @@ const Contact = () => {
     }
   ]
   const [locations, setLocation] = useState(places);
+  const [mainLocation, setMainLocation] = useState(center)
   return (
     <div>
       <div>
@@ -34,12 +42,8 @@ const Contact = () => {
         <p>Berlin</p>
         <p>Tel. xxxx/xxxxxxxx</p><br></br>
       </div>
-      <div>
-        <p>Hast Du Fragen, Wünsche oder Anregungen? Bitte nimm Kontakt mit uns auf, wir helfen Dir gerne weiter!</p>
-        <p>authentic.relating@gmail.com</p>
-      </div>
       <div className='block'>
-        <MapTabs locations={locations} />
+        <Map lat={mainLocation.lat} lng={mainLocation.lng} locations={locations} />
       </div>
     </div>
   );

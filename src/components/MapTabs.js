@@ -14,7 +14,7 @@ const MapTabs = ({ locations }) => {
       {locations.map(location => (
         <TabPanel key={`tabpanel-${location.id}`}>
           <h2>{location.name}</h2>
-          <Map />
+          <Map lat={location.lat} lng={location.lng} />
         </TabPanel>
       ))}
     </Tabs>        

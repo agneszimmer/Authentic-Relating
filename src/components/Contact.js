@@ -1,3 +1,5 @@
+import "../App.css";
+import { popup } from 'leaflet';
 import { useState } from 'react';
 import Map from '../components/Map'
 
@@ -38,12 +40,24 @@ const Contact = () => {
     <div>
       <div>
         <h2>Authentic Relating Games and Circling Groups in Germany</h2>
-        <p>Musterstr. 1</p>
-        <p>Berlin</p>
-        <p>Tel. xxxx/xxxxxxxx</p><br></br>
+          <div class="box">
+            <p>Musterstr. 1</p>
+            <p>Berlin</p>
+            <p>Tel. xxxx/xxxxxxxx</p>
+          </div>
+          <div class="box">
+            <p>Musterstr. 2</p>
+            <p>Hamburg</p>
+            <p>Tel. xxxx/xxxxxxxx</p> 
+          </div>
+          <div class="box">
+            <p>Musterstr. 3</p>
+            <p>Freiburg</p>
+            <p>Tel. xxxx/xxxxxxxx</p>  
+          </div>
       </div>
       <div className='block'>
-        <Map lat={mainLocation.lat} lng={mainLocation.lng} locations={locations} />
+        <Map lat={mainLocation.lat} lng={mainLocation.lng} locations={locations}/>
       </div>
     </div>
   );

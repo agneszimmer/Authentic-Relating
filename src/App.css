@@ -129,3 +129,16 @@ h6 {
   width:100%;
   height: 500px;
 }
+
+.box {
+  float: left;
+  width: 32%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #A9E2F3;
+  box-sizing: border-box;
+ }
+
+ .box:last-child {
+  margin-right: 0;
+}

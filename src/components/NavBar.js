@@ -28,6 +28,9 @@ const NavBar = () => {
       <NavLink to="/events" activeClassName="active">
         Events
       </NavLink>
+      <NavLink to="/upload" activeClassName="active">
+        Upload
+      </NavLink>
       <NavLink to="/contact" activeClassName="active">
         Kontakt
       </NavLink>

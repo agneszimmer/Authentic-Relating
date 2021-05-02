@@ -9,8 +9,9 @@ import SingleGame from "./components/games/GameSingle";
 import UploadGame from "./components/games/UploadGame";
 import Login from "./components/user/Login";
 import UserPage from "./components/user/UserPage";
-
 import NotFound from "./components/NotFound";
+import Upload from "./components/Upload";
+import Contact from "./components/Contact";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/users/:id" component={UserPage}></Route>
         <Route path="/games/upload" component={UploadGame}></Route>
+        <Route path="/contact" component={Contact}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
     </div>

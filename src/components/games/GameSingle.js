@@ -1,8 +1,8 @@
-import "../App.css";
+import "../../App.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import circle from "../pictures/circle.png"; //loading
+import circle from "../../pictures/circle.png"; //loading
 
 const SingleGame = () => {
   const { game_id } = useParams();

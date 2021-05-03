@@ -1,5 +1,4 @@
-/* import axios from "axios"; */
-import "../App.css";
+import "../../App.css";
 
 import { useState, useEffect } from "react";
 
@@ -7,7 +6,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { useParams, Link } from "react-router-dom";
 
-import circle from "../pictures/circle.png";
+import circle from "../../pictures/circle.png";
 
 const Games = () => {
   const [games, setGames] = useState([]);

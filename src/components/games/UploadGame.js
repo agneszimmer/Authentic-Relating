@@ -1,6 +1,6 @@
 import React from "react";
 
-const Upload = () => {
+const UploadGame = () => {
   return (
     <div>
       <form>
@@ -58,4 +58,4 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default UploadGame;

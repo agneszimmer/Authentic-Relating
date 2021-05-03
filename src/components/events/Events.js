@@ -1,7 +1,7 @@
 import React from "react";
-import grouppicture from "../pictures/Authentic_Relating.webp";
+import grouppicture from "../../pictures/Authentic_Relating.webp";
 
-const Dates = () => {
+const Events = () => {
   return (
     <div className="datesContainer">
       <h2>Workshop Dates</h2>
@@ -9,4 +9,4 @@ const Dates = () => {
   );
 };
 
-export default Dates;
+export default Events;

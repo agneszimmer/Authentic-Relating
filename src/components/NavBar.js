@@ -25,8 +25,8 @@ const NavBar = () => {
           Perspective-Shifting Games
         </NavDropdown.Item>
       </NavDropdown> */}
-      <NavLink to="/dates" activeClassName="active">
-        Workshops in Leipzig
+      <NavLink to="/events" activeClassName="active">
+        Events
       </NavLink>
       <NavLink to="/upload" activeClassName="active">
         Upload

@@ -1,14 +1,19 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
-const Login = () => {
+const Register = () => {
   const { isAuthenticated, setIsAuthenticated, error, setError } = useContext(
     AuthContext
   );
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   //destructure this formState
-  const { email, password } = formState;
+  const { username, email, password } = formState;
 
   const onChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
@@ -17,24 +22,26 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     for (const field in formState) {
-      if (!formState[field]) return alert("${field} is empty");
+      if (!formState[field]) return alert(`${field} is empty`);
     }
 
     try {
-      const res = await fetch("http://localhost:3333/users/login", {
+      const res = await fetch("http://localhost:3333/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-      const { token, error } = await res.json();
-      if (error) setError(error);
-
+      const { token, err } = await res.json();
+      if (err) setError(err);
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
-    } catch (error) {
-      console.log(error);
+      console.log({ token });
+    } catch (err) {
+      console.log(err);
     }
   };
+
+  if (isAuthenticated) return <Redirect to="/" />;
 
   return (
     <div className="container">
@@ -45,12 +52,23 @@ const Login = () => {
       )}
       <form onSubmit={onSubmit}>
         <div className="form-group">
+          <label htmlFor="username">Name</label>
+          <input
+            type="text"
+            name="username"
+            className="form-control"
+            placeholder="name"
+            value={username}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
           <label htmlFor="userEmail">Email address</label>
           <input
             type="email"
             name="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder="email"
             value={email}
             onChange={onChange}
           />
@@ -66,36 +84,23 @@ const Login = () => {
             onChange={onChange}
           />
         </div>
+        {/*         <div className="form-group">
+          <label htmlFor="location">Where are you?</label>
+          <input
+            type="text"
+            name="location"
+            className="form-control"
+            placeholder="location"
+            value={location}
+            onChange={onChange}
+          />
+        </div> */}
         <button type="submit" className="btn btn-primary">
-          Login
+          Sign up
         </button>
       </form>
     </div>
   );
 };
 
-export default Login;
-
-/*   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const login = async (event) => {
-    event.preventDefault();
-    const options = {
-      method: "POST",
-      body: JSON.stringify({
-        email: { email },
-        password: { password },
-      }),
-      headers: { "content-Type": "application/json" },
-    };
-    const res = await fetch("https://localhost:3333/users/login", options);
-    const { token } = await res.json();
-
-    localStorage.setItem("token", token);
-    console.log(token);
-  }; */
-
-/* const validateForm = () => {
-    return email.length > 0 && password.length > 0;
-  }; */
+export default Register;

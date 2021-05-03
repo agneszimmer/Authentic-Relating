@@ -7,6 +7,7 @@ import Events from "./components/events/Events";
 import Games from "./components/games/Games";
 import SingleGame from "./components/games/GameSingle";
 import UploadGame from "./components/games/UploadGame";
+import Register from "./components/user/Register";
 import Login from "./components/user/Login";
 import UserPage from "./components/user/UserPage";
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/events" component={Events}></Route>
         <Route exact path="/games" component={Games}></Route>
         <Route path="/games/:game_id" component={SingleGame}></Route>
+        <Route exact path="/register" component={Register}></Route>
         <Route exact path="/login" component={Login}></Route>
         <Route exact path="/users/:id" component={UserPage}></Route>
         <Route path="/games/upload" component={UploadGame}></Route>

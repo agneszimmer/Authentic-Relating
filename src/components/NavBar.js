@@ -21,59 +21,28 @@ const NavBar = () => {
       <NavLink to="/games" activeClassName="active" className="nav-link">
         Authentic Relating Games
       </NavLink>
-      <NavLink to="/events" activeClassName="active" className="nav-link">
+      <NavLink to="/searchgames" activeClassName="active">
+        Search Games
+      </NavLink>
+      {/*       <NavDropdown title="Authentic Relating Games" id="basic-nav-dropdown">
+        <NavDropdown.Item href="/games">All</NavDropdown.Item>
+        <NavDropdown.Item href="/games/x">
+          Awareness Games & Meditations
+        </NavDropdown.Item>
+        <NavDropdown.Item href="/games/y">Fun and Impro Games</NavDropdown.Item>
+        <NavDropdown.Item href="/games/y">
+          Perspective-Shifting Games
+        </NavDropdown.Item>
+      </NavDropdown> */}
+      <NavLink to="/events" activeClassName="active">
         Events
       </NavLink>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
-          {!isAuthenticated ? (
-            <Fragment>
-              <li className="nav-item">
-                <NavLink
-                  to="/register"
-                  activeClassName="active"
-                  className="nav-link"
-                >
-                  Register
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink
-                  to="/login"
-                  activeClassName="active"
-                  className="nav-link"
-                >
-                  Login
-                </NavLink>
-              </li>
-              {/*               <button
-                onClick={() => {
-                  setLoginModalOpen(true);
-                }}
-              >
-                LoginModal
-              </button> */}
-            </Fragment>
-          ) : (
-            <Fragment>
-              <li className="nav-item">
-                <NavLink
-                  to="/:username"
-                  activeClassName="active"
-                  className="nav-link"
-                >
-                  Profile
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <div onClick={logout} className="nav-link">
-                  Logout
-                </div>
-              </li>
-            </Fragment>
-          )}
-        </ul>
-      </div>
+      <NavLink to="/upload" activeClassName="active">
+        Upload
+      </NavLink>
+      <NavLink to="/contact" activeClassName="active">
+        Contact
+      </NavLink>
     </Navbar>
   );
 };

@@ -26,13 +26,16 @@ const Register = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3333/users/register", {
+      const res = await fetch("https://arg-api.herokuapp.com/users/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
       const { token, err } = await res.json();
-      if (err) setError(err);
+      if (err) {
+        setError(err);
+        return setTimeout(() => setError(""), 8000);
+      }
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
       console.log({ token });

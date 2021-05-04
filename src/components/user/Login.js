@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
@@ -21,13 +22,16 @@ const Login = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:3333/users/login", {
+      const res = await fetch("https://arg-api.herokuapp.com/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
       const { token, error } = await res.json();
-      if (error) setError(error);
+      if (error) {
+        setError(error);
+        setTimeout(() => setError(""), 8000);
+      }
 
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
@@ -36,8 +40,10 @@ const Login = () => {
     }
   };
 
+  if (isAuthenticated) return <Redirect to="/" />;
+
   return (
-    <div className="container">
+    <div id="loginModal" className="modal show">
       {error && (
         <div class="alert alert-danger" role="alert">
           {error}

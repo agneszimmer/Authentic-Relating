@@ -14,7 +14,9 @@ const SingleGame = () => {
     const getGame = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`http://localhost:3333/games/${game_id}`);
+        const response = await fetch(
+          `https://arg-api.herokuapp.com/games/${game_id}`
+        );
         const jsonData = await response.json();
         console.log(jsonData);
 

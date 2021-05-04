@@ -1,41 +1,28 @@
 import Navbar from "react-bootstrap/Navbar";
-import { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { ModalContext } from "../context/ModalContext";
 import "../App.css";
 
 const NavBar = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
+  /*   const { loginModalOpen, setLoginModalOpen } = useContext(ModalContext); */
+
   return (
     <Navbar className="navbar" sticky="top">
       <Navbar.Brand href="/">LOVE</Navbar.Brand>
       {/*       <NavLink exact to="/" activeClassName="active">
         Home
       </NavLink> */}
-      <NavLink to="/about" activeClassName="active">
+      <NavLink to="/about" activeClassName="active" className="nav-link">
         About
       </NavLink>
-      <NavLink to="/games" activeClassName="active">
+      <NavLink to="/games" activeClassName="active" className="nav-link">
         Authentic Relating Games
       </NavLink>
-      {/*       <NavDropdown title="Authentic Relating Games" id="basic-nav-dropdown">
-        <NavDropdown.Item href="/games">All</NavDropdown.Item>
-        <NavDropdown.Item href="/games/x">
-          Awareness Games & Meditations
-        </NavDropdown.Item>
-        <NavDropdown.Item href="/games/y">Fun and Impro Games</NavDropdown.Item>
-        <NavDropdown.Item href="/games/y">
-          Perspective-Shifting Games
-        </NavDropdown.Item>
-      </NavDropdown> */}
-      <NavLink to="/events" activeClassName="active">
+      <NavLink to="/events" activeClassName="active" className="nav-link">
         Events
-      </NavLink>
-      <NavLink to="/upload" activeClassName="active">
-        Upload
-      </NavLink>
-      <NavLink to="/contact" activeClassName="active">
-        Kontakt
       </NavLink>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
@@ -59,6 +46,13 @@ const NavBar = () => {
                   Login
                 </NavLink>
               </li>
+              {/*               <button
+                onClick={() => {
+                  setLoginModalOpen(true);
+                }}
+              >
+                LoginModal
+              </button> */}
             </Fragment>
           ) : (
             <Fragment>

@@ -142,16 +142,3 @@ h6 {
  .box:last-child {
   margin-right: 0;
 }
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%
-}
-.menu {
-  display: flex;
-  justify-content: space-around;
-}
-
-.fixedWidth { width: 200px; }

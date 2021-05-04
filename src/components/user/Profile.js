@@ -1,7 +1,7 @@
 import React from "react";
 
-const Contakt = () => {
+const Profile = () => {
   return <div></div>;
 };
 
-export default Contakt;
+export default Profile;

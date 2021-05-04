@@ -1,7 +1,7 @@
 import React from "react";
 
 const UserPage = () => {
-  return <div>Secret</div>;
+  return <div>My Collection</div>;
 };
 
 export default UserPage;

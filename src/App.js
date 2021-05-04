@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -8,10 +9,15 @@ import Games from "./components/games/Games";
 import SearchGames from "./components/games/SearchGames";
 import SingleGame from "./components/games/GameSingle";
 import UploadGame from "./components/games/UploadGame";
+import Register from "./components/user/Register";
 import Login from "./components/user/Login";
 import UserPage from "./components/user/UserPage";
+import Profile from "./components/user/Profile";
 import NotFound from "./components/NotFound";
 import Contact from "./components/Contact";
+
+// import UploadGame from "./components/UploadGame";
+// import Header from "./components/Header";
 
 const App = () => {
   return (
@@ -24,12 +30,26 @@ const App = () => {
         <Route exact path="/games" component={Games}></Route>
         <Route exact path="/searchGames" component={SearchGames}></Route>
         <Route path="/games/:game_id" component={SingleGame}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <Route exact path="/users/:id" component={UserPage}></Route>
         <Route path="/games/upload" component={UploadGame}></Route>
+        <Route exact path="/register" component={Register}></Route>
+        <Route exact path="/login" component={Login}></Route>
+        <ProtectedRoute
+          exact
+          path="/users/:id"
+          component={UserPage}
+        ></ProtectedRoute>
+        <ProtectedRoute
+          exact
+          path="/users/profile/:id"
+          component={Profile}
+        ></ProtectedRoute>
+
         <Route path="/contact" component={Contact}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
+      {/*       <Modal isOpen={loginModalOpen}>
+        <h2>login</h2>
+      </Modal> */}
     </div>
   );
 };

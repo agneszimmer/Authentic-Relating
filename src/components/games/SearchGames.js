@@ -1,4 +1,6 @@
 import "../../App.css";
+import React from "react";
+import circle from "../../pictures/circle.png";
 import * as ReactBootStrap from "react-bootstrap";
 import React from "react";
 

@@ -43,7 +43,7 @@ const Login = () => {
   if (isAuthenticated) return <Redirect to="/" />;
 
   return (
-    <div id="loginModal" className="modal show">
+    <div className="container">
       {error && (
         <div class="alert alert-danger" role="alert">
           {error}
@@ -81,27 +81,3 @@ const Login = () => {
 };
 
 export default Login;
-
-/*   const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const login = async (event) => {
-    event.preventDefault();
-    const options = {
-      method: "POST",
-      body: JSON.stringify({
-        email: { email },
-        password: { password },
-      }),
-      headers: { "content-Type": "application/json" },
-    };
-    const res = await fetch("https://localhost:3333/users/login", options);
-    const { token } = await res.json();
-
-    localStorage.setItem("token", token);
-    console.log(token);
-  }; */
-
-/* const validateForm = () => {
-    return email.length > 0 && password.length > 0;
-  }; */

@@ -15,6 +15,9 @@ const NavBar = () => {
       <NavLink to="/games" activeClassName="active">
         Authentic Relating Games
       </NavLink>
+      <NavLink to="/searchgames" activeClassName="active">
+        Search Games
+      </NavLink>
       {/*       <NavDropdown title="Authentic Relating Games" id="basic-nav-dropdown">
         <NavDropdown.Item href="/games">All</NavDropdown.Item>
         <NavDropdown.Item href="/games/x">
@@ -32,7 +35,7 @@ const NavBar = () => {
         Upload
       </NavLink>
       <NavLink to="/contact" activeClassName="active">
-        Kontakt
+        Contact
       </NavLink>
     </Navbar>
   );

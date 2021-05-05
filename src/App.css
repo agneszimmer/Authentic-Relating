@@ -7,61 +7,10 @@
 }
 
 body {
-  text-align: center;
   padding: 0;
   margin: 0;
   font-family: Raleway, sans-serif;
   background-color: #fdfffb;
-}
-
-h1 {
-  color: white;
-  margin-top: 3rem;
-  font-size: 3.2rem;
-  text-shadow: -0.1em -0.1em 0.2em black, 0.1em 0.1em 0.2em black;
-}
-
-h2 {
-  padding-top: 3rem;
-  font-size: 2.8rem;
-}
-
-h3 {
-  color: white;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  font-size: 1.3rem;
-  text-shadow: -0.1em -0.1em 0.2em black, 0.1em 0.1em 0.2em black;
-}
-
-h6 {
-  color: white;
-  margin-top: 0.8rem;
-  font-size: 0.9rem;
-}
-
-#overlay {
-  position: fixed;
-  width: 100%;
-  height: 18rem;
-  top: 13.2rem;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
-}
-
-.container {
-  max-width: none !important;
-  display: flex;
-  flex-direction: column;
-
-  background-image: url(./pictures/faces.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 50rem;
 }
 
 .loadingImage {
@@ -125,8 +74,8 @@ h6 {
   height: 43rem;
 }
 
-.leaflet-container{
-  width:100%;
+.leaflet-container {
+  width: 100%;
   height: 500px;
 }
 
@@ -135,10 +84,10 @@ h6 {
   width: 32%;
   margin-right: 2%;
   padding: 20px;
-  background: #A9E2F3;
+  background: #a9e2f3;
   box-sizing: border-box;
- }
+}
 
- .box:last-child {
+.box:last-child {
   margin-right: 0;
 }

@@ -4,10 +4,16 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { ModalContext } from "../context/ModalContext";
 import "../App.css";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 const NavBar = () => {
   const { isAuthenticated, logout } = useContext(AuthContext);
   /*   const { loginModalOpen, setLoginModalOpen } = useContext(ModalContext); */
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <Navbar className="navbar" sticky="top">
@@ -38,13 +44,16 @@ const NavBar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
+                <Button variant="primary" onClick={handleShow}>
+                  Launch demo modal
+                </Button>
+                {/*                 <NavLink
                   to="/login"
                   activeClassName="active"
                   className="nav-link"
                 >
                   Login
-                </NavLink>
+                </NavLink> */}
               </li>
               {/*               <button
                 onClick={() => {
@@ -74,6 +83,20 @@ const NavBar = () => {
           )}
         </ul>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Navbar>
   );
 };

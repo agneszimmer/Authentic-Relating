@@ -64,7 +64,7 @@ const Games = () => {
     <div className="gamesContainer fluid">
       {games &&
         games.map((game) => (
-          <Card key={game.game_id} style={{ width: "18rem" }}>
+          <Card key={game._id} style={{ width: "18rem" }}>
             {console.log(game.image)}
             <Card.Img variant="top" src="{games.image}" />
             <Card.Body>

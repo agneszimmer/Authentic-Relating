@@ -1,11 +1,11 @@
-import "../App.css";
+import "../css/Home.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="container fluid">
-      <div id="overlay">
+    <div className="homecontainer fluid">
+      <div id="home-overlay">
         <div className="home">
           <h1>Authentic Revolution </h1>
         </div>

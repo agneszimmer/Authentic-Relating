@@ -11,10 +11,14 @@ import SingleGame from "./components/games/GameSingle";
 import UploadGame from "./components/games/UploadGame";
 import Register from "./components/user/Register";
 import Login from "./components/user/Login";
+import LoginModal from "./components/modals/LoginModal";
+import Users from "./components/user/Users";
 import UserPage from "./components/user/UserPage";
 import Profile from "./components/user/Profile";
 import NotFound from "./components/NotFound";
 import Contact from "./components/Contact";
+
+import { loginModalOpen } from "./context/ModalContext";
 
 // import UploadGame from "./components/UploadGame";
 // import Header from "./components/Header";
@@ -23,6 +27,9 @@ const App = () => {
   return (
     <div className="App">
       <NavBar />
+      {/*       <Modal isOpen={loginModalOpen}>
+        <h2>login</h2>
+      </Modal> */}
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About}></Route>
@@ -32,8 +39,11 @@ const App = () => {
         <Route path="/games/:game_id" component={SingleGame}></Route>
         <Route path="/games/upload" component={UploadGame}></Route>
         <Route exact path="/register" component={Register}></Route>
-        <Route exact path="/login" component={Login}></Route>
-        <ProtectedRoute
+        <Route exact path="/login" component={LoginModal}></Route>
+        <Route exact path="/users" component={Users}></Route>
+        <Route exact path="/users/:id" component={UserPage}></Route>
+        <Route exact path="/users/profile/:id" component={Profile}></Route>
+        {/*         <ProtectedRoute
           exact
           path="/users/:id"
           component={UserPage}
@@ -42,14 +52,11 @@ const App = () => {
           exact
           path="/users/profile/:id"
           component={Profile}
-        ></ProtectedRoute>
+        ></ProtectedRoute> */}
 
         <Route path="/contact" component={Contact}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
-      {/*       <Modal isOpen={loginModalOpen}>
-        <h2>login</h2>
-      </Modal> */}
     </div>
   );
 };

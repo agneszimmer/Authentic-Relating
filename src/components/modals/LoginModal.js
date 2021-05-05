@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Modal from "react-modal";
+import Modal from "react-bootstrap/Modal";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -55,52 +55,54 @@ const LoginModal = (props) => {
 }; */
 
   return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label htmlFor="userEmail">Email address</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              placeholder="Enter email"
-              value={email}
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              placeholder="Password"
-              value={password}
-              onChange={onChange}
-            />
-          </div>
-        </form>
-      </Modal.Body>
-      <Modal.Footer>
-        <button type="submit" className="btn btn-primary">
-          Login
-        </button>
-        <button className="btn btn-primary" onClick={props.closed}>
-          Close
-        </button>
-      </Modal.Footer>
-    </Modal>
+    <div>
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Modal heading
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <label htmlFor="userEmail">Email address</label>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Enter email"
+                value={email}
+                onChange={onChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                placeholder="Password"
+                value={password}
+                onChange={onChange}
+              />
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+          <button className="btn btn-primary" onClick={props.closed}>
+            Close
+          </button>
+        </Modal.Footer>
+      </Modal>
+    </div>
   );
 };
 

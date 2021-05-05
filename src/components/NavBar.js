@@ -27,6 +27,9 @@ const NavBar = () => {
       <NavLink to="/games" activeClassName="active" className="nav-link">
         Authentic Relating Games
       </NavLink>
+      <NavLink to="/searchgames" activeClassName="active" className="nav-link">
+        Search Games
+      </NavLink>
       <NavLink to="/events" activeClassName="active">
         Events
       </NavLink>

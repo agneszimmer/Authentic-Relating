@@ -31,7 +31,7 @@ const SearchGames = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://arg-api.herokuapp.com/games/search/query?title=${title}&category=${category}&occasion={occasion}&players={players}&time={time}`
+        `https://arg-api.herokuapp.com/games/search/query?title=${title}&category=${category}&occasion=${occasion}&players=${players}&time=${time}`
       );
       const jsonData = await response.json();
       setGames(jsonData);

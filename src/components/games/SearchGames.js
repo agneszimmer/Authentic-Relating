@@ -82,15 +82,15 @@ const SearchGames = () => {
                   onChange={onChange}
                 >
                   <option></option>
-                  <option value="awareness">Awareness Games</option>
-                  <option>Meditations</option>
+                  <option value="Awareness">Awareness Games</option>
+                  <option value="Meditation">Meditations</option>
                   <option>Fun and Improv Games</option>
-                  <option>Group Bonding Games</option>
-                  <option>Self-Awareness Games</option>
-                  <option>Self-Expression Games</option>
-                  <option>Perspective-Shifting Games</option>
-                  <option>Feedback Games</option>
-                  <option>Curiosity Games</option>
+                  <option value="Group Bonding">Group Bonding Games</option>
+                  <option value="Self-Awareness">Self-Awareness Games</option>
+                  <option value="Self-Expression">Self-Expression Games</option>
+                  <option value="Perspective-shifting">Perspective-Shifting Games</option>
+                  <option value="Feedback">Feedback Games</option>
+                  <option value="Curiosity">Curiosity Games</option>
                   <option>Deep Empathy Games</option>
                   <option>Movement Games</option>
                   <option>Touch Games</option>

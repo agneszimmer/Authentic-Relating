@@ -1,8 +1,10 @@
 import "../../App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
-
-import circle from "../../pictures/circle.png"; //loading
+import { Card, Container } from "react-bootstrap";
+import Loading from "../Loading";
+import PostComment from "./PostComment";
+import Comments from "./Comments";
 
 const SingleGame = () => {
   const { game_id } = useParams();
@@ -31,35 +33,44 @@ const SingleGame = () => {
     getGame();
   }, [game_id]);
 
-  if (loading)
-    return <img className="loadingImage" src={circle} alt="loading..." />; //spinner einfügen
+  if (loading) return <Loading />; //spinner einfügen
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="singleGameContainer">
+    <div>
       {game && (
-        <div key={game.game_id}>
-          {console.log(game.title)}
+        <Container className="single-game-container">
+          <Card className="single-game-card">
+            <Card.Header className="single-game-card-header">
+              <h2>{game.title}</h2>
+            </Card.Header>
+            <Card.Body>
+              {/* <img className="imageGame" src="{games.image}" alt="img"></img> */}
+              <h5>
+                Time:{" "}
+                {game.time_min === game.time_max
+                  ? game.time_min
+                  : `${game.time_min} - ${game.time_max} min`}{" "}
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                Players:{" "}
+                {game.players_min === game.players_max
+                  ? game.players_min
+                  : `${game.players_min} - ${game.players_max}`}{" "}
+                &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                Category: {game.category}
+              </h5>
+              {/*               {game.occasion && <h5>Occasions: </h5>}
+              <p>{game.occasion}</p> */}
+              <h5>Directions:</h5>
+              <p>{game.description}</p>
+              {game.variations && <h5>Variations:</h5>}
+              <p>{game.variations}</p>
+            </Card.Body>
+          </Card>
+          <PostComment game={game} />
 
-          <img className="imageGame" src="{games.image}" alt="img"></img>
-
-          <h2>{game.title}</h2>
-          <h5>
-            Time:{" "}
-            {game.time_min === game.time_max
-              ? game.time_min
-              : `${game.time_min} - ${game.time_max} min`}{" "}
-            &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-            Players:{" "}
-            {game.players_min === game.players_max
-              ? game.players_min
-              : `${game.players_min} - ${game.players_max}`}
-          </h5>
-          <h5>Directions:</h5>
-          <p>{game.description}</p>
-          {game.variations && <h5>Variations:</h5>}
-          <p>{game.variations}</p>
-        </div>
+          <Comments game={game} />
+        </Container>
       )}
     </div>
   );

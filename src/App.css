@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 .active {
@@ -29,19 +30,6 @@ body {
   margin-top: 4rem;
 }
 
-.gamesContainer {
-  display: flex;
-  justify-content: space-around;
-}
-
-.singleGameContainer {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-  margin-top: 5rem;
-  text-align: start;
-}
-
 .navbar {
   display: flex;
   justify-content: space-around;
@@ -50,13 +38,6 @@ body {
 }
 
 /* Games Cards */
-
-.card {
-  display: grid;
-  min-width: 16rem !important;
-  height: 28rem;
-  margin: 2rem;
-}
 
 .datesImage {
   display: block;

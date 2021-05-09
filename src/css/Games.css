@@ -1,0 +1,55 @@
+.button {
+  text-transform: none;
+}
+
+.search-button {
+  vertical-align: bottom;
+  /*   margin-top: 25px; */
+}
+
+.card {
+  display: grid;
+  min-width: 16rem !important;
+  margin: 2rem;
+}
+
+.search-card {
+  height: auto;
+}
+
+.search-card-header {
+  text-align: center !important;
+}
+
+.search-header {
+  margin-bottom: 0;
+  text: center;
+}
+
+.games-card {
+  flex: 0 1 19%;
+  min-width: 16rem;
+  opacity: 0.8;
+}
+
+.single-game-container {
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+
+  background-size: cover;
+  background-position: center;
+
+  height: 50rem;
+
+  padding: 0;
+  margin: 0;
+  font-family: Raleway, sans-serif;
+  background-color: #fdfffb;
+  background-image: url(../pictures/abstract/large.jpg);
+  background-size: cover;
+
+  box-shadow: none;
+  border: 0px;
+  border-radius: 0px;
+}

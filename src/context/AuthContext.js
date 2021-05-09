@@ -1,11 +1,11 @@
 import { createContext, useState, useEffect } from "react";
-
 export const AuthContext = createContext();
 
 const AuthState = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState({});
-  const [error, setError] = useState();
+  const [activeUser, setActiveUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -24,18 +24,20 @@ const AuthState = ({ children }) => {
         setIsAuthenticated(true);
       } else {
         localStorage.removeItem("token");
-        setIsAuthenticated("false");
+        setIsAuthenticated(false);
       }
     };
 
     if (token) {
       verifySession();
+    } else {
+      setIsAuthenticated(false);
     }
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     setTimeout(setError(""), 8000);
-  }, [error]);
+  }, [error]); */
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -47,12 +49,14 @@ const AuthState = ({ children }) => {
       value={{
         isAuthenticated,
         setIsAuthenticated,
-        user,
-        setUser,
+        activeUser,
+        setActiveUser,
+        loading,
+        setLoading,
         error,
         setError,
         logout,
-      }} // dubble {} because its a js expression and an object
+      }}
     >
       {children}
     </AuthContext.Provider>

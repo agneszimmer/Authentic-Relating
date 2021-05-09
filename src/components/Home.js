@@ -7,7 +7,7 @@ const Home = () => {
     <div className="homecontainer fluid">
       <div id="home-overlay">
         <div className="home">
-          <h1>Authentic Revolution </h1>
+          <h1>Authentic Relating Leipzig</h1>
         </div>
         <div className="home">
           <h3>

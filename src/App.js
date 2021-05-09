@@ -9,16 +9,14 @@ import Games from "./components/games/Games";
 import SearchGames from "./components/games/SearchGames";
 import SingleGame from "./components/games/GameSingle";
 import UploadGame from "./components/games/UploadGame";
-import Register from "./components/user/Register";
-import Login from "./components/user/Login";
-import LoginModal from "./components/modals/LoginModal";
 import Users from "./components/user/Users";
 import UserPage from "./components/user/UserPage";
 import Profile from "./components/user/Profile";
 import NotFound from "./components/NotFound";
-import Contact from "./components/Contact";
+import Community from "./components/community/Community";
+import Groups from "./components/community/Groups";
 
-import { loginModalOpen } from "./context/ModalContext";
+import { loginModalOpen } from "./context/GamesContext";
 
 // import UploadGame from "./components/UploadGame";
 // import Header from "./components/Header";
@@ -36,14 +34,10 @@ const App = () => {
         <Route path="/events" component={Events}></Route>
         <Route exact path="/games" component={Games}></Route>
         <Route exact path="/searchGames" component={SearchGames}></Route>
-        <Route path="/games/:game_id" component={SingleGame}></Route>
-        <Route path="/games/upload" component={UploadGame}></Route>
-        <Route exact path="/register" component={Register}></Route>
-        <Route exact path="/login" component={LoginModal}></Route>
+        <Route path="/game/:game_id" component={SingleGame}></Route>
+        <Route path="/uploadgame" component={UploadGame}></Route>
         <Route exact path="/users" component={Users}></Route>
-        <Route exact path="/users/:id" component={UserPage}></Route>
-        <Route exact path="/users/profile/:id" component={Profile}></Route>
-        {/*         <ProtectedRoute
+        <ProtectedRoute
           exact
           path="/users/:id"
           component={UserPage}
@@ -52,9 +46,9 @@ const App = () => {
           exact
           path="/users/profile/:id"
           component={Profile}
-        ></ProtectedRoute> */}
-
-        <Route path="/contact" component={Contact}></Route>
+        ></ProtectedRoute>
+        <Route path="/community" component={Community}></Route>
+        <Route path="/groups" component={Groups}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>
     </div>

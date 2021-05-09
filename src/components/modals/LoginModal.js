@@ -1,12 +1,25 @@
+import "../../css/Modals.css";
+
 import React, { useState, useContext } from "react";
-import Modal from "react-bootstrap/Modal";
 import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import { Form, Modal, Container, Button, Row, Col } from "react-bootstrap";
 
-const LoginModal = (props) => {
-  const { isAuthenticated, setIsAuthenticated, error, setError } = useContext(
-    AuthContext
-  );
+const LoginModal = () => {
+  //ModalActions:
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    activeUser,
+    setActiveUser,
+    error,
+    setError,
+  } = useContext(AuthContext);
+
   const [formState, setFormState] = useState({ email: "", password: "" });
 
   //destructure this formState
@@ -19,7 +32,7 @@ const LoginModal = (props) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     for (const field in formState) {
-      if (!formState[field]) return alert("fill all fields please");
+      if (!formState[field]) return alert("${field} is empty");
     }
 
     try {
@@ -28,7 +41,7 @@ const LoginModal = (props) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-      const { token, error } = await res.json();
+      const { token, user, error } = await res.json();
       if (error) {
         setError(error);
         setTimeout(() => setError(""), 8000);
@@ -36,6 +49,9 @@ const LoginModal = (props) => {
 
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
+      console.log(user);
+      setActiveUser(user);
+      console.log(activeUser.username);
     } catch (error) {
       console.log(error);
     }
@@ -43,66 +59,53 @@ const LoginModal = (props) => {
 
   if (isAuthenticated) return <Redirect to="/" />;
 
-  /* const modalStyle = {
-  position: "fixed",
-  left: 0,
-  top: 0,
-  bottom: 0,
-  right: 0,
-  backgroundColor: "rgba(0,0,0,.2)",
-  color: "##FFF",
-  fontSize: "40px",
-}; */
-
   return (
-    <div>
-      <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
+    <>
+      <Button variant="link" onClick={handleShow} className="nav-link">
+        Login
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
-          </Modal.Title>
+          <Modal.Title>Welcome back!</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={onSubmit}>
-            <div className="form-group">
-              <label htmlFor="userEmail">Email address</label>
-              <input
+          {error && (
+            <div class="alert alert-danger" role="alert">
+              {error}
+            </div>
+          )}
+          <Form onSubmit={onSubmit}>
+            <Form.Group>
+              <Form.Label>Please enter Email address</Form.Label>
+              <Form.Control
                 type="email"
                 name="email"
-                className="form-control"
-                placeholder="Enter email"
+                placeholder="email"
                 value={email}
                 onChange={onChange}
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="password">Password</label>
+            </Form.Group>
+            <Form.Group>
+              <label htmlFor="password">and your Password</label>
               <input
                 type="password"
                 name="password"
                 className="form-control"
-                placeholder="Password"
+                placeholder="password"
                 value={password}
                 onChange={onChange}
               />
-            </div>
-          </form>
+            </Form.Group>
+          </Form>
         </Modal.Body>
         <Modal.Footer>
-          <button type="submit" className="btn btn-primary">
+          <Button type="submit" onClick={onSubmit} className="btn btn-success ">
             Login
-          </button>
-          <button className="btn btn-primary" onClick={props.closed}>
-            Close
-          </button>
+          </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 

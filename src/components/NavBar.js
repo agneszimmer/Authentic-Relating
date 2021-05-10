@@ -80,7 +80,7 @@ const NavBar = () => {
             >
               <NavDropdown.Item>
                 <NavLink
-                  to={`/users/profile/${activeUser._id}`}
+                  to={`/userprofile/${activeUser._id}`}
                   activeClassName="active"
                   className="nav-link"
                 >
@@ -89,7 +89,7 @@ const NavBar = () => {
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <NavLink
-                  to={`/users/profile/${activeUser._id}`}
+                  to={`/users/collection/${activeUser._id}`}
                   activeClassName="active"
                   className="nav-link"
                 >

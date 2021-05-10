@@ -23,7 +23,7 @@ const AuthState = ({ children }) => {
         console.log("success");
         setIsAuthenticated(true);
       } else {
-        localStorage.removeItem("token");
+        /*    localStorage.removeItem("token"); */
         setIsAuthenticated(false);
       }
     };

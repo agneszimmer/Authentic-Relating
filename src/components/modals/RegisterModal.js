@@ -5,6 +5,7 @@ import { Redirect } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Loading from "../Loading";
 
 const RegisterModal = (props) => {
   //ModalActions:

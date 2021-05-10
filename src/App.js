@@ -7,11 +7,11 @@ import About from "./components/About";
 import Events from "./components/events/Events";
 import Games from "./components/games/Games";
 import SearchGames from "./components/games/SearchGames";
-import SingleGame from "./components/games/GameSingle";
+import SingleGame from "./components/games/SingleGame";
 import UploadGame from "./components/games/UploadGame";
 import Users from "./components/user/Users";
-import UserPage from "./components/user/UserPage";
-import Profile from "./components/user/Profile";
+import UserProfile from "./components/user/UserProfile";
+import UserCollection from "./components/user/UserCollection";
 import NotFound from "./components/NotFound";
 import Community from "./components/community/Community";
 import Groups from "./components/community/Groups";
@@ -39,13 +39,13 @@ const App = () => {
         <Route exact path="/users" component={Users}></Route>
         <ProtectedRoute
           exact
-          path="/users/:id"
-          component={UserPage}
+          path="/userprofile/:id"
+          component={UserProfile}
         ></ProtectedRoute>
         <ProtectedRoute
           exact
-          path="/users/profile/:id"
-          component={Profile}
+          path="/users/collection/:id"
+          component={UserCollection}
         ></ProtectedRoute>
         <Route path="/community" component={Community}></Route>
         <Route path="/groups" component={Groups}></Route>

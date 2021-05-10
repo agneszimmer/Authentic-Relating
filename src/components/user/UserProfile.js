@@ -1,11 +1,11 @@
-import "../../App.css";
+import "../../css/Users.css";
 import { useState, useEffect } from "react";
+import { Container, Button, Card, Jumbotron } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import profile from "../../pictures/profile2.jpg";
+import Loading from "../Loading";
 
-import circle from "../../pictures/circle.png"; //loading
-
-const Profile = () => {
+const UserProfile = () => {
   const { id } = useParams();
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,30 +15,43 @@ const Profile = () => {
     const getUser = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `https://arg-api.herokuapp.com/games/${id}`
-        );
+        const response = await fetch(`http://localhost:3333/users/${id}`);
         const jsonData = await response.json();
         console.log(jsonData);
 
         if (response) {
           setUser(jsonData);
         }
-      } catch (err) {
-        console.log(err.message);
+      } catch (error) {
+        setError(error);
+        console.log(error.message);
       }
       setLoading(false);
     };
     getUser();
   }, [id]);
 
-  if (loading)
-    return <img className="loadingImage" src={circle} alt="loading..." />; //spinner einfügen
+  useEffect(() => {
+    const random = Math.floor(Math.random() * 25);
+  });
+
+  if (loading) return <Loading />;
+
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <div className="profileContainer">
-      {user && (
+    <Container className="profile-container">
+      {/*       {user && (
+        <Jumbotron>
+        <h1>Hello {user.username}!</h1>
+        <p>
+          This is a simple hero unit, a simple jumbotron-style component for calling
+          extra attention to featured content or information.
+        </p>
+        <p>
+          <Button variant="primary">Learn more</Button>
+        </p>
+      </Jumbotron>
         <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
@@ -106,9 +119,9 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      )}
-    </div>
+      )} */}
+    </Container>
   );
 };
 
-export default Profile;
+export default UserProfile;

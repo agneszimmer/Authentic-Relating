@@ -29,11 +29,12 @@ const Events = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   //display date
-  /*   let date = new Date();
+  let date = new Date();
   const formatDate = (date) => {
-    let year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate() + 1;
+    const newDate = new Date(date);
+    let year = newDate.getFullYear();
+    let month = newDate.getMonth() + 1;
+    let day = newDate.getDate() + 1;
     if (day < 10) {
       day = "0" + day;
     }
@@ -41,7 +42,7 @@ const Events = () => {
       month = "0" + month;
     }
     return month + "/" + day + "/" + year;
-  }; */
+  };
 
   return (
     <Container className="events-container fluid">
@@ -50,8 +51,7 @@ const Events = () => {
           <Card className="events-card" key={event._id}>
             <Card.Header>{event.title}</Card.Header>
             <Card.Body>
-              {/*  <Card.Text>{formatDate(event.date)}</Card.Text> */}
-              <Card.Text>{event.date}</Card.Text>
+              <Card.Text>{formatDate(event.date)}</Card.Text>
               <Card.Text>{event.description}</Card.Text>
               <Link to={`/events/${event._id}`}>
                 <Button variant="light">book</Button>

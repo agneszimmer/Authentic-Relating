@@ -17,8 +17,9 @@ const Groups = () => {
         const jsonData = await response.json();
         console.log(jsonData);
         setGroups(jsonData);
-      } catch (err) {
-        console.log(err.message);
+      } catch (error) {
+        setError(error);
+        console.log(error.messageor);
       }
       setLoading(false);
     };
@@ -30,6 +31,7 @@ const Groups = () => {
 
   return (
     <Container className="gamesContainer fluid">
+      <div>hello </div>
       {groups &&
         groups.map((group) => (
           <Card className="groups-card" key={group._id}>

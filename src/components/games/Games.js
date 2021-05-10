@@ -17,8 +17,9 @@ const Games = () => {
         const jsonData = await response.json();
         console.log(jsonData);
         setGames(jsonData);
-      } catch (err) {
-        console.log(err.message);
+      } catch (error) {
+        setError(error);
+        console.log(error.message);
       }
       setLoading(false);
     };

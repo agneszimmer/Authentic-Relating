@@ -1,4 +1,4 @@
-import "../../App.css";
+import "../../css/Games.css";
 import { useState, useEffect, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import { Card, Container } from "react-bootstrap";
@@ -25,16 +25,14 @@ const SingleGame = () => {
         if (response) {
           setGame(jsonData);
         }
-      } catch (err) {
-        console.log(err.message);
+      } catch (error) {
+        setError(error);
+        console.log(error.message);
       }
       setLoading(false);
     };
     getGame();
   }, [game_id]);
-
-  if (loading) return <Loading />; //spinner einfügen
-  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div>

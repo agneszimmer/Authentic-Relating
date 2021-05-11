@@ -1,0 +1,64 @@
+.community-container {
+  padding: 2rem;
+  margin: 0;
+  max-width: none !important;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+
+  background-image: url(../pictures/abstract/mother-earth2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.group-card {
+  flex: 0 1 19%;
+  opacity: 0.8;
+  display: grid;
+  min-width: 16rem !important;
+  margin: 0rem;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 83vh;
+}
+.groups-col {
+  max-height: 83vh;
+  overflow: auto;
+}
+/* .box {
+  float: left;
+  width: 32%;
+  margin-right: 2%;
+  padding: 20px;
+  background: #a9e2f3;
+  box-sizing: border-box;
+}
+
+.box:last-child {
+  margin-right: 0;
+} */
+
+.events-container {
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+
+  background-image: url(../pictures/celebration-jaison-cianelli.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.events-card {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+}

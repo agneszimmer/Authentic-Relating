@@ -1,11 +1,12 @@
 import "../css/Home.css";
 import React from "react";
 import { Link } from "react-router-dom";
+import { Container, Button, Card } from "react-bootstrap";
 
 const Home = () => {
   return (
-    <div className="homecontainer fluid">
-      <div id="home-overlay">
+    <Container className="home-container">
+      <Card className="home-jumbo">
         <div className="home">
           <h1>Authentic Relating Leipzig</h1>
         </div>
@@ -22,11 +23,13 @@ const Home = () => {
           <h6> Remember our fundamental similarity: BEING HUMAN</h6>
         </div>
         <br></br>
-        <Link to="/contact">
-          <button type="button">contact</button>
+        <Link to="/events">
+          <button type="button" className="btn btn-outline-light ">
+            Meet us at our next workshop in Leipzig in June
+          </button>
         </Link>
-      </div>
-    </div>
+      </Card>
+    </Container>
   );
 };
 

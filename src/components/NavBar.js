@@ -18,17 +18,48 @@ const NavBar = () => {
       variant="light"
       bg="light"
       collapseOnSelect
-      expand="lg"
+      expand="md"
       sticky="top"
       activeUser={activeUser}
     >
       <Navbar.Brand href="/">LOVE</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav>
-          <NavLink to="/about" activeClassName="active" className="nav-link">
-            About
-          </NavLink>
+        <Nav className="mr-auto">
+          <NavDropdown
+            className="ml-auto"
+            title="About"
+            id="basic-nav-dropdown"
+          >
+            <NavDropdown.Item>
+              <NavLink
+                to="/authentic-relating"
+                activeClassName="active"
+                className="nav-link"
+              >
+                Authentic Relating
+              </NavLink>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink
+                to="/circling"
+                activeClassName="active"
+                className="nav-link"
+              >
+                Circling
+              </NavLink>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <NavLink
+                to="/team-love"
+                activeClassName="active"
+                className="nav-link"
+              >
+                Team Love
+              </NavLink>
+            </NavDropdown.Item>
+          </NavDropdown>
+
           <NavLink
             to="/searchgames"
             activeClassName="active"

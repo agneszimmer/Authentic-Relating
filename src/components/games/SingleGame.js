@@ -9,6 +9,7 @@ import Comments from "./Comments";
 const SingleGame = () => {
   const { game_id } = useParams();
   const [game, setGame] = useState();
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -17,7 +18,8 @@ const SingleGame = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://arg-api.herokuapp.com/games/${game_id}`
+          `http://localhost:3333/games/${game_id}`
+          /*  `https://arg-api.herokuapp.com/games/${game_id}` */
         );
         const jsonData = await response.json();
         console.log(jsonData);
@@ -65,9 +67,9 @@ const SingleGame = () => {
               <p>{game.variations}</p>
             </Card.Body>
           </Card>
-          <PostComment game={game} />
+          <PostComment game={game} setComments={setComments} />
 
-          <Comments game={game} />
+          <Comments game={game} comments={comments} setComments={setComments} />
         </Container>
       )}
     </div>

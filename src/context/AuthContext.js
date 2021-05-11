@@ -13,17 +13,18 @@ const AuthState = ({ children }) => {
     //to check if the token is still valid:
     const verifySession = async () => {
       const res = await fetch(
-        "https://arg-api.herokuapp.com/users/verify-session",
+        "http://localhost:3333/users/auth/verify-session",
         {
           headers: { token },
         }
       );
-      const { success } = await res.json();
+      const { success, user } = await res.json(); //import {success,user} for the password issue
       if (success) {
         console.log("success");
+        setActiveUser(user);
         setIsAuthenticated(true);
       } else {
-        /*    localStorage.removeItem("token"); */
+        localStorage.removeItem("token");
         setIsAuthenticated(false);
       }
     };

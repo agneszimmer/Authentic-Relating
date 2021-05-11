@@ -1,14 +1,22 @@
-import "../App.css";
+import "../../css/About.css";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
 import React from "react";
 import ReactPlayer from "react-player";
 
-const About = () => {
+const AuthenticRelating = () => {
   return (
-    <div>
-      <div className="about">
-        <ReactPlayer url="https://www.youtube.com/watch?v=LJG7R7Da5xA" />
-        <h1></h1>
+    <Container className="about-container">
+      <Card className="about-card">
+        <Row>
+          <Card className="about-dates">
+            <Col sm={6} md={5}>
+              <h1>Authentic Relating</h1>
+              <h3>Changing the World, one connection at a time</h3>
+            </Col>
+          </Card>
+        </Row>
+
         <h5>
           Authentic Relating Games were created to give you a playbook for how
           to begin relating on an authentic level.
@@ -30,14 +38,17 @@ const About = () => {
           Not knowing what to say to a connected in-flow conversation Lack of
           understanding to gaining helpful insights about each other
         </p>
+        <h5>
+          Playing these games help build skills for any relationship: Romantic
+          partnerships, families, roommates, friends, community groups, teams,
+          and clientele.
+        </h5>
+      </Card>
+      <div className="player">
+        <ReactPlayer url="https://www.youtube.com/watch?v=LJG7R7Da5xA" />
       </div>
-      <h5>
-        Playing these games help build skills for any relationship: Romantic
-        partnerships, families, roommates, friends, community groups, teams, and
-        clientele.
-      </h5>
-    </div>
+    </Container>
   );
 };
 
-export default About;
+export default AuthenticRelating;

@@ -1,35 +1,63 @@
 .button {
   text-transform: none;
+  border-radius: 4px;
+  padding: 0.4rem;
 }
 
-.search-button {
-  vertical-align: bottom;
-  /*   margin-top: 25px; */
+.search-button:hover {
+  font-weight: bold;
+  padding: 0.5rem;
 }
 
-.card {
-  display: grid;
-  min-width: 16rem !important;
-  margin: 2rem;
+.all-games-container {
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../pictures/abstract/big.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+.search-games-container {
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../pictures/abstract/a-heart.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+}
+
+.gamecard-container {
+  max-width: none !important;
 }
 
 .search-card {
   height: auto;
+  background-color: rgba(158, 158, 158, 0.6);
+  margin-top: 3rem;
+  text-shadow: -0.1em -0.1em 0.5em rgb(214, 214, 214),
+    0.1em 0.1em 0.5em rgb(255, 255, 255);
 }
 
 .search-card-header {
   text-align: center !important;
+  background-color: rgba(72, 72, 72, 0.5);
 }
-
 .search-header {
   margin-bottom: 0;
-  text: center;
+  text-align: center;
 }
 
 .games-card {
+  display: inline-block;
   flex: 0 1 19%;
-  min-width: 16rem;
-  opacity: 0.8;
+  width: 16rem;
+  opacity: 0.9;
+  display: grid;
+  margin: 2rem;
 }
 
 .single-game-container {
@@ -37,19 +65,36 @@
   display: flex;
   flex-direction: column;
 
+  background-image: url(../pictures/abstract/large.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  background-position: center;
+  background-position: top;
 
-  height: 50rem;
+  height: 100vh;
 
   padding: 0;
   margin: 0;
   font-family: Raleway, sans-serif;
   background-color: #fdfffb;
-  background-image: url(../pictures/abstract/large.jpg);
   background-size: cover;
 
   box-shadow: none;
   border: 0px;
   border-radius: 0px;
+}
+
+.comments-card {
+  /*   height: px; */
+  margin: 2rem;
+  /* max-height: 135px; */
+  /* overflow: hidden; */
+}
+
+.comment-picture {
+  margin: 1rem;
+}
+
+.comment-text {
+  padding: 1rem;
 }

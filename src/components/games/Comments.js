@@ -1,20 +1,25 @@
 import "../../css/Games.css";
 import React, { useState, useEffect } from "react";
-import { Container, Button, Card, Row, Col } from "react-bootstrap";
+import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
 import Loading from "../Loading.js";
+import { useParams } from "react-router-dom";
 
-const Comments = ({ game }) => {
-  const [comments, setComments] = useState([]);
+const Comments = ({ game, comments, setComments }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
+
+  const { game_id } = useParams();
 
   useEffect(() => {
     const getComments = async () => {
       setLoading(true);
       try {
-        const response = await fetch("https://arg-api.herokuapp.com/comments");
+        const response = await fetch(
+          `http://localhost:3333/comments/game/${game_id}`
+        );
         const jsonData = await response.json();
         setComments(jsonData);
+        console.log(comments);
       } catch (err) {
         console.log(err.message);
       }
@@ -24,38 +29,32 @@ const Comments = ({ game }) => {
   }, []);
 
   return (
-    <Card className="comments-card">
-      <Row>
-        <Col className="col-md-8 col-sm-12">
-          <div className="panel-body">
-            <div className="clearfix"></div>
-            <hr />
-            <ul className="media-list">
-              <li className="media">
-                <a href="#" className="pull-left">
-                  <img
-                    src="https://bootdey.com/img/Content/user_1.jpg"
-                    alt=""
-                    className="img-circle"
-                  />
-                </a>
-                <div className="media-body">
-                  <span className="text-muted pull-right">
-                    <small className="text-muted">30 min ago</small>
-                  </span>
-                  <strong className="text-success">@MartinoMont</strong>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Lorem ipsum dolor sit amet,{" "}
-                    <a href="#">#consecteturadipiscing </a>.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </Col>
-      </Row>
-    </Card>
+    <Container className="comments-container fluid">
+      {comments &&
+        comments.map((comment) => (
+          <Card className="comments-card" key={comment._id}>
+            <Row className="align-items-center">
+              <Col xs={4} lg={2} className="justify-content-md-center">
+                <Image
+                  className="comment-picture"
+                  src={
+                    comment.author.image
+                      ? `http://localhost:3333/${comment.author.image}`
+                      : "https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg"
+                  }
+                  roundedCircle
+                  style={{ width: 100, radius: 50 }}
+                />
+              </Col>
+
+              <Col className="comment-text">
+                <Card.Text>{comment.author.username}</Card.Text>
+                <Card.Text>{comment.comment}</Card.Text>
+              </Col>
+            </Row>
+          </Card>
+        ))}
+    </Container>
   );
 };
 

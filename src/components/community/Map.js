@@ -1,6 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import markerCustom from "../pictures/marker.png";
+import { Link } from "react-router-dom";
+import markerCustom from "../../pictures/marker.png";
 import { Icon } from "leaflet";
 
 const Map = ({ lat, lng, locations }) => {
@@ -9,8 +10,10 @@ const Map = ({ lat, lng, locations }) => {
     iconSize: [25, 25],
   });
 
+  console.log(locations);
+
   return (
-    <MapContainer center={[lat, lng]} zoom={5} scrollWheelZoom={false}>
+    <MapContainer center={[lat, lng]} zoom={6} scrollWheelZoom={false}>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -18,8 +21,10 @@ const Map = ({ lat, lng, locations }) => {
       {locations.map((location) => (
         <Marker position={[location.lat, location.lng]} icon={icon}>
           <Popup>
-            Get connected
-            <br /> Link to something
+            {location.groupname}
+            <Link target="_blank" to={{ pathname: `${location.contact}` }}>
+              {location.contact}
+            </Link>
           </Popup>
         </Marker>
       ))}

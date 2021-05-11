@@ -1,8 +1,9 @@
 import "../../css/Community.css";
 import { useEffect, useState } from "react";
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
+import GroupsMap from "./GroupsMap";
 
 const Groups = () => {
   const [groups, setGroups] = useState([]);
@@ -30,18 +31,28 @@ const Groups = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <Container className="gamesContainer fluid">
-      <div>hello </div>
-      {groups &&
-        groups.map((group) => (
-          <Card className="groups-card" key={group._id}>
-            <Card.Header>{group.groupname}</Card.Header>
-            <Card.Body>
-              <Card.Text>{group.location}</Card.Text>
-              <Card.Text>{group.contact}</Card.Text>
-            </Card.Body>
+    <Container className="community-container">
+      <Row>
+        <Col className="groups-col col-md-4">
+          {groups &&
+            groups.map((group) => (
+              <Card className="group-card" key={group._id}>
+                <Card.Body>
+                  <h5>{group.groupname}</h5>
+                  <h6>{group.location}</h6>
+                  <Link target="_blank" to={{ pathname: `${group.contact}` }}>
+                    {group.contact}
+                  </Link>
+                </Card.Body>
+              </Card>
+            ))}
+        </Col>
+        <Col className="col-12 col-md-8 order-first">
+          <Card className="map-card">
+            <GroupsMap groups={groups} />
           </Card>
-        ))}
+        </Col>
+      </Row>
     </Container>
   );
 };

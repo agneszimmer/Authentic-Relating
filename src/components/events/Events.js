@@ -1,6 +1,7 @@
-import "../../App.css";
+import "../../css/Community.css";
+/* import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; */
 import { useEffect, useState, useContext } from "react";
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
 
@@ -15,8 +16,10 @@ const Events = () => {
       try {
         const response = await fetch("https://arg-api.herokuapp.com/events");
         const jsonData = await response.json();
-        console.log(jsonData);
         setEvents(jsonData);
+        console.log(events);
+        const sortedEvents = events.sort((a, b) => b.date - a.date);
+        console.log(sortedEvents);
       } catch (err) {
         console.log(err.message);
       }
@@ -30,64 +33,80 @@ const Events = () => {
 
   //display date
   let date = new Date();
+
   const formatDate = (date) => {
     const newDate = new Date(date);
-    let year = newDate.getFullYear();
     let month = newDate.getMonth() + 1;
-    let day = newDate.getDate() + 1;
+    let day = newDate.getDate();
+    let year = newDate.getFullYear() - 2000;
     if (day < 10) {
       day = "0" + day;
     }
     if (month < 10) {
       month = "0" + month;
     }
-    return month + "/" + day + "/" + year;
+    return day + "." + month + "." + year;
   };
+  /* 
+  const formatTime = (date) => {
+    const newDate = new Date(date);
+    let hours = newDate.getHours();
+    let min = newDate.getMinutes();
+    if (min < 10) {
+      min = "0" + min;
+    }
+    return hours + ":" + min;
+  }; */
 
   return (
-    <Container className="events-container fluid">
+    <Container className="events-container justify-content-center fluid">
       {events &&
         events.map((event) => (
           <Card className="events-card" key={event._id}>
-            <Card.Header>{event.title}</Card.Header>
-            <Card.Body>
-              <Card.Text>{formatDate(event.date)}</Card.Text>
-              <Card.Text>{event.description}</Card.Text>
-              <Link to={`/events/${event._id}`}>
-                <Button variant="light">book</Button>
-              </Link>
-            </Card.Body>
-          </Card>
+            <Row className="align-items-center">
+              <Col
+                style={{ backgroundColor: "#C0C0C0" }}
+                className="col-sm-2 text-right"
+              >
+                <h3>{formatDate(event.date)}</h3>
+                {event.enddate && (
+                  <>
+                    <h4> - </h4>
+                    <h3>{formatDate(event.enddate)}</h3>
+                  </>
+                )}
+                <h4>{event.time}</h4>
+              </Col>
 
-          /*       <div className="row row-striped">
-        <div className="col-2 text-right">
-          <h1 className="display-4">
-            <span className="badge badge-secondary">23</span>
-          </h1>
-          <h2>OCT</h2>
-        </div>
-        <div className="col-10">
-          <h3 className="text-uppercase">
-            <strong>Ice Cream Social</strong>
-          </h3>
-          <ul className="list-inline">
-            <li className="list-inline-item">
-              <i className="fa fa-calendar-o" aria-hidden="true"></i> Monday
-            </li>
-            <li className="list-inline-item">
-              <i className="fa fa-clock-o" aria-hidden="true"></i> 12:30 PM -
-              2:00 PM
-            </li>
-            <li className="list-inline-item">
-              <i className="fa fa-location-arrow" aria-hidden="true"></i> Cafe
-            </li>
-          </ul>
-          <p>
-            Lorem ipsum dolsit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
-      </div> */
+              <Col className="md-10">
+                <h3 className="text-uppercase">
+                  <strong>{event.title}</strong>
+                </h3>
+                <ul className="list-inline">
+                  <li className="list-inline-item">
+                    <i className="fa fa-clock-o" aria-hidden="true"></i>
+                    {event.time}
+                  </li>
+                  <li className="list-inline-item">
+                    <i className="fa fa-location-arrow" aria-hidden="true"></i>
+                    {event.location}
+                  </li>
+                  <li className="list-inline-item">
+                    {"   "}
+                    Contact:{"  "}
+                    <Link
+                      style={{ color: "#606060" }}
+                      target="_blank"
+                      to={{ pathname: `${event.contact}` }}
+                    >
+                      {event.contact}
+                    </Link>
+                  </li>
+                </ul>
+                <p>{event.description}</p>
+              </Col>
+            </Row>
+          </Card>
         ))}
     </Container>
   );

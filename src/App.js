@@ -3,7 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
-import About from "./components/About";
+import AuthenticRelating from "./components/about/AuthenticRelating";
+import Circling from "./components/about/Circling";
+import TeamLove from "./components/about/TeamLove";
 import Events from "./components/events/Events";
 import Games from "./components/games/Games";
 import SearchGames from "./components/games/SearchGames";
@@ -30,14 +32,22 @@ const App = () => {
       </Modal> */}
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/about" component={About}></Route>
+        <Route path="/authentic-relating" component={AuthenticRelating}></Route>
+        <Route path="/circling" component={Circling}></Route>
+        <Route path="/team-love" component={TeamLove}></Route>
         <Route path="/events" component={Events}></Route>
         <Route exact path="/games" component={Games}></Route>
         <Route exact path="/searchGames" component={SearchGames}></Route>
         <Route path="/game/:game_id" component={SingleGame}></Route>
         <Route path="/uploadgame" component={UploadGame}></Route>
         <Route exact path="/users" component={Users}></Route>
-        <ProtectedRoute
+        <Route exact path="/userprofile/:id" component={UserProfile}></Route>
+        <Route
+          exact
+          path="/users/collection/:id"
+          component={UserCollection}
+        ></Route>
+        {/*         <ProtectedRoute
           exact
           path="/userprofile/:id"
           component={UserProfile}
@@ -46,8 +56,8 @@ const App = () => {
           exact
           path="/users/collection/:id"
           component={UserCollection}
-        ></ProtectedRoute>
-        <Route path="/community" component={Community}></Route>
+        ></ProtectedRoute> */}
+        <Route path="/community" component={Groups}></Route>
         <Route path="/groups" component={Groups}></Route>
         <Route path="*" component={NotFound}></Route>
       </Switch>

@@ -1,58 +1,56 @@
 import "../../css/Users.css";
-import { useState, useEffect } from "react";
-import { Container, Button, Card, Jumbotron } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useEffect, useContext, useState } from "react";
+import { Container, Button, Card, Jumbotron, Row, Col } from "react-bootstrap";
 import profile from "../../pictures/profile2.jpg";
+import { AuthContext } from "../../context/AuthContext";
 import Loading from "../Loading";
+import questionsArray from "../../questionsKeys.json";
+
+import profilePic from "../../pictures/profilepic.jpg";
 
 const UserProfile = () => {
-  const { id } = useParams();
-  const [user, setUser] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const { activeUser, loading, setLoading, error, setError } = useContext(
+    AuthContext
+  );
 
-  useEffect(() => {
-    const getUser = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`http://localhost:3333/users/${id}`);
-        const jsonData = await response.json();
-        console.log(jsonData);
-
-        if (response) {
-          setUser(jsonData);
-        }
-      } catch (error) {
-        setError(error);
-        console.log(error.message);
-      }
-      setLoading(false);
-    };
-    getUser();
-  }, [id]);
+  const [question, setQuestion] = useState(
+    "What is the number one reason that you think people want to hang out with you?"
+  );
 
   useEffect(() => {
     const random = Math.floor(Math.random() * 25);
-  });
+    console.log(random);
+    console.log(questionsArray);
+    const newQuestion = () => questionsArray[random];
+    setQuestion(newQuestion);
+    console.log(question);
+  }, []);
 
   if (loading) return <Loading />;
 
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <Container className="profile-container">
-      {/*       {user && (
-        <Jumbotron>
-        <h1>Hello {user.username}!</h1>
-        <p>
-          This is a simple hero unit, a simple jumbotron-style component for calling
-          extra attention to featured content or information.
-        </p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
-      </Jumbotron>
-        <div className="main-body">
+    <Container className="profile-container" activeUser={activeUser}>
+      {activeUser && (
+        <Card className="profile-card">
+          <Row>
+            <Col xs={5} lg={3}>
+              <img
+                src={profilePic}
+                alt="Profile"
+                className="rounded-circle img-fluid"
+                height="90%"
+              />
+            </Col>
+
+            <Col>
+              <h1>Hello {activeUser.username}!</h1>
+              <h4>{question}</h4>
+            </Col>
+          </Row>
+        </Card>
+        /*        <div className="main-body">
           <div className="row gutters-sm">
             <div className="col-md-4 mb-3">
               <div className="card">
@@ -118,8 +116,8 @@ const UserProfile = () => {
               </div>
             </div>
           </div>
-        </div>
-      )} */}
+        </div> */
+      )}
     </Container>
   );
 };

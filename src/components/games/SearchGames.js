@@ -1,11 +1,10 @@
 import "../../css/Games.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Form, Container, Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Form, Container, Button, Row, Col, Card } from "react-bootstrap";
 import Loading from "../Loading.js";
 import GamesCards from "./GamesCards.js";
 import GamesLists from "./GamesLists.js";
-import Games from "./Games.js";
 
 const SearchGames = () => {
   const [formState, setFormState] = useState({
@@ -36,8 +35,9 @@ const SearchGames = () => {
       const jsonData = await response.json();
       setGames(jsonData);
       console.log(games);
-    } catch (err) {
-      console.log(err.message);
+    } catch (error) {
+      setError(error);
+      console.log(error.message);
     }
     setLoading(false);
   };
@@ -45,11 +45,13 @@ const SearchGames = () => {
   if (loading) return <Loading />;
 
   return (
-    <div>
+    <Container className="search-games-container fluid">
       <Card className="search-card">
         <Card.Header className="search-card-header">
-          <Link to="/games">
-            <h4>Check out all Authentic Relating Games</h4>
+          <Link className="games-link" to="/games">
+            <h4 style={{ color: "black" }}>
+              Check out all Authentic Relating Games
+            </h4>
           </Link>
         </Card.Header>
         <Card.Body>
@@ -160,13 +162,13 @@ const SearchGames = () => {
               </Col>
               <Col md="auto" className="align-item-bottom">
                 <Form.Group controlId="form.ControlSelectSearch">
-                  <Button
+                  <button
                     variant="secondary"
                     type="submit"
                     className="search-button button"
                   >
                     Find Games
-                  </Button>
+                  </button>
                 </Form.Group>
               </Col>
             </Row>
@@ -176,7 +178,7 @@ const SearchGames = () => {
 
       <GamesCards games={games} />
       {/*     <GamesLists /> */}
-    </div>
+    </Container>
   );
 };
 

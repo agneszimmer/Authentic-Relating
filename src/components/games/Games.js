@@ -1,6 +1,6 @@
-import "../../App.css";
+import "../../css/Games.css";
 import { useEffect, useState } from "react";
-import { Container, Button, Card } from "react-bootstrap";
+import { Container, Button, Card, CardDeck } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Loading from "../Loading";
 
@@ -29,22 +29,78 @@ const Games = () => {
   if (loading) return <Loading />;
   if (error) return <div>Error: {error.message}</div>;
 
+  /*   const pageCount = 10;
+  const changePage = ({ selected }) => {
+    setPageNum(selected);
+  }; */
+
   return (
-    <Container className="gamesContainer fluid">
+    <Container className="all-games-container">
       {games &&
         games.map((game) => (
-          <Card className="games-card" key={game._id}>
-            <Card.Header>{game.title}</Card.Header>
-            <Card.Body>
-              <Card.Text>{game.teaser}</Card.Text>
-              <Link to={`/games/${game._id}`}>
-                <Button variant="light">details</Button>
-              </Link>
-            </Card.Body>
-          </Card>
+          <CardDeck>
+            <Card className="mb-3 text-center games-card" key={game._id}>
+              <Card.Header>
+                <h5>{game.title}</h5>
+              </Card.Header>
+              <Card.Body>
+                <Card.Text>{game.teaser}</Card.Text>
+                <Link to={`/game/${game._id}`}>
+                  <Button variant="light">details</Button>
+                </Link>
+              </Card.Body>
+            </Card>
+          </CardDeck>
         ))}
     </Container>
   );
 };
 
 export default Games;
+
+{
+  /* <Container className="mt-5 mb-5">
+<Row
+  style={{
+    display: "flex",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+  }}
+>
+  {games &&
+    games.map((game) => (
+      <Card className="games-card" key={game._id}>
+        <Card.Header>{game.title}</Card.Header>
+        <Card.Body>
+          <Card.Text>{game.teaser}</Card.Text>
+          <Link to={`/game/${game._id}`}>
+            <Button variant="light">details</Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    ))}
+
+  <ReactPaginate
+    previousLabel={
+      <FontAwesomeIcon
+        className="previousBtn"
+        icon={["fas", "angle-left"]}
+      />
+    }
+    nextLabel={
+      <FontAwesomeIcon
+        className="nextBtn"
+        icon={["fas", "angle-right"]}
+      />
+    }
+    pageCount={pageCount}
+    onPageChange={changePage}
+    containerClassName={"paginationBtns"}
+    previousLinkClassName={"previousBtn"}
+    nextLinkClassName={"nextBtn"}
+    disabledClassName={"paginationDisabled"}
+    activeClassName={"paginationActive"}
+  />
+</Row>
+</Container> */
+}

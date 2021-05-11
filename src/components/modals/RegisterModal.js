@@ -17,7 +17,7 @@ const RegisterModal = (props) => {
   const {
     isAuthenticated,
     setIsAuthenticated,
-    setUser,
+    setActiveUser,
     error,
     setError,
   } = useContext(AuthContext);
@@ -47,16 +47,17 @@ const RegisterModal = (props) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-      const { token, err } = await res.json();
-      if (err) {
-        setError(err);
+      const { token, user, error } = await res.json();
+      if (error) {
+        setError(error);
         return setTimeout(() => setError(""), 8000);
       }
       localStorage.setItem("token", token);
       setIsAuthenticated(true);
+      setActiveUser(user);
       console.log({ token });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -18,3 +18,12 @@
   color: #242424;
   font-size: 16px;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  border-color: transparent;
+  text-decoration: none !important;
+  background-img: #919191;
+  height: 3.2rem;
+}

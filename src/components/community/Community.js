@@ -3,11 +3,7 @@ import Groups from "./Groups";
 import Loading from "../Loading";
 
 const Community = () => {
-  return (
-    <div>
-      <Groups />
-    </div>
-  );
+  return <Groups />;
 };
 
 export default Community;

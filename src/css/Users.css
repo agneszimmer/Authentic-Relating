@@ -1,0 +1,20 @@
+.profile-container {
+  max-width: none !important;
+  display: flex;
+  flex-direction: column;
+  background-image: url(../pictures/abstract/large.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 200vh;
+}
+
+.profile-card {
+  position: fixed;
+  margin: 5rem;
+  padding: 2rem;
+  top: 4rem;
+
+  background-color: rgba(99, 99, 99, 0.5);
+  z-index: 100;
+}

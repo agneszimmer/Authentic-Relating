@@ -37,7 +37,7 @@ const LoginModal = () => {
     }
 
     try {
-      const res = await fetch("https://arg-api.herokuapp.com/users/login", {
+      const res = await fetch("http://localhost:3333/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
@@ -45,14 +45,16 @@ const LoginModal = () => {
       const { token, user, error } = await res.json();
       if (error) {
         setError(error);
+        console.log(error);
         setTimeout(() => setError(""), 8000);
       }
-
-      localStorage.setItem("token", token);
-      setIsAuthenticated(true);
-      console.log(user);
-      setActiveUser(user);
-      console.log(activeUser.username);
+      if (token) {
+        localStorage.setItem("token", token);
+        setIsAuthenticated(true);
+        console.log(user);
+        setActiveUser(user);
+        console.log(activeUser.username);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -101,7 +103,7 @@ const LoginModal = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={onSubmit} className="btn btn-success ">
+          <Button variant="light" block type="submit" onClick={onSubmit}>
             Login
           </Button>
         </Modal.Footer>

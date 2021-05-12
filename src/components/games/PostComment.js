@@ -4,9 +4,8 @@ import Loading from "../Loading.js";
 import { AuthContext } from "../../context/AuthContext";
 import { Card, Button, Form, Collapse, Fade } from "react-bootstrap";
 
-const PostComment = ({ game }) => {
+const PostComment = ({ game, setComments }) => {
   const [open, setOpen] = useState(false);
-  const [newComment, setNewComment] = useState();
 
   const {
     isAuthenticated,
@@ -41,14 +40,20 @@ const PostComment = ({ game }) => {
     }
 
     try {
-      const res = await fetch("localhost:3333/comments", {
+      const res = await fetch("http://localhost:3333/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
       const { newComment, error } = await res.json();
       console.log(newComment);
-      setNewComment(newComment);
+      setComments((prev) => [newComment, ...prev]);
+      setFormState({
+        author: "",
+        game_ref: "",
+        comment: "",
+      });
+      setError(error);
     } catch (error) {
       setError(error);
     }
@@ -62,37 +67,36 @@ const PostComment = ({ game }) => {
       {isAuthenticated ? (
         <>
           <Button
+            variant="light"
             onClick={() => setOpen(!open)}
             aria-controls="collapse-comment"
             aria-expanded={open}
           >
-            click
+            Share your experiences with {game.title}
           </Button>
           <Collapse in={open}>
             <div id="collapse-comment">
-              <Card.Title>Share your experiences with {game.title}</Card.Title>
               <Form onSubmit={onSubmit}>
                 <Form.Control
+                  type="textarea"
                   name="comment"
                   value={comment}
                   placeholder="write a comment..."
-                  rows="3"
+                  rows="5"
                   onChange={onChange}
                 ></Form.Control>
               </Form>
               <br />
-              <Button
-                type="submit"
-                onClick={onSubmit}
-                className="btn btn-info pull-right"
-              >
+              <Button type="submit" onClick={onSubmit} variant="light" block>
                 Post
               </Button>
             </div>
           </Collapse>
         </>
       ) : (
-        <Button>Log in to share your experiences with {game.title}</Button>
+        <Button variant="secondary" block>
+          Log in to share your experiences with {game.title}
+        </Button>
       )}
     </Card>
   );

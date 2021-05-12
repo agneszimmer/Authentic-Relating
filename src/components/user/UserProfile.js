@@ -1,127 +1,94 @@
 import "../../css/Users.css";
-import { useState, useEffect } from "react";
-import { Container, Button, Card, Jumbotron } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import profile from "../../pictures/profile2.jpg";
+import { useEffect, useContext, useState } from "react";
+import { Container, Button, Card, Row, Col } from "react-bootstrap";
+import { AuthContext } from "../../context/AuthContext";
 import Loading from "../Loading";
+import UpdateMotto from "./UpdateMotto";
+import UpdateUserData from "./UpdateUserData";
+import questionsArray from "../../questionsKeys.json";
 
 const UserProfile = () => {
-  const { id } = useParams();
-  const [user, setUser] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const { activeUser, error, loading, setError } = useContext(AuthContext);
+
+  const [question, setQuestion] = useState(
+    "What is the number one reason that you think people want to hang out with you?"
+  );
 
   useEffect(() => {
-    const getUser = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`http://localhost:3333/users/${id}`);
-        const jsonData = await response.json();
-        console.log(jsonData);
-
-        if (response) {
-          setUser(jsonData);
-        }
-      } catch (error) {
-        setError(error);
-        console.log(error.message);
-      }
-      setLoading(false);
-    };
-    getUser();
-  }, [id]);
-
-  useEffect(() => {
-    const random = Math.floor(Math.random() * 25);
-  });
+    const random = Math.floor(Math.random() * 27);
+    console.log(random);
+    console.log(questionsArray);
+    const newQuestion = () => questionsArray[random];
+    setQuestion(newQuestion);
+    console.log(question);
+  }, []);
 
   if (loading) return <Loading />;
 
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <Container className="profile-container">
-      {/*       {user && (
-        <Jumbotron>
-        <h1>Hello {user.username}!</h1>
-        <p>
-          This is a simple hero unit, a simple jumbotron-style component for calling
-          extra attention to featured content or information.
-        </p>
-        <p>
-          <Button variant="primary">Learn more</Button>
-        </p>
-      </Jumbotron>
-        <div className="main-body">
-          <div className="row gutters-sm">
-            <div className="col-md-4 mb-3">
-              <div className="card">
-                <div className="card-body">
-                  <div className="d-flex flex-column align-items-center text-center">
-                    {
-                      <img
-                        src={profile}
-                        alt="Profile"
-                        className="rounded-circle"
-                        width="150"
-                      />
-                    }
-                    <div className="mt-3">
-                      <h4>{user.username}</h4>
-                      <p className="text-secondary mb-1">{user.bio}</p>
-                      <p className="text-muted font-size-sm">{user.location}</p>
-                      <button className="btn btn-primary">Change</button>
-                      <button className="btn btn-outline-primary">
-                        Message
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-8">
-              <div className="card mb-3">
-                <div className="card-body">
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Full Name</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      {user.username}
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Email</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">{user.email}</div>
-                  </div>
-                  <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Phone</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">
-                      (239) 816-9029
-                    </div>
-                  </div>
-                  <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <h6 className="mb-0">Password</h6>
-                    </div>
-                    <div className="col-sm-9 text-secondary">Change</div>
-                  </div>
-                  <hr />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )} */}
+    <Container className="profile-container" activeUser={activeUser}>
+      {activeUser && (
+        <Card className="profile-card">
+          <Row>
+            <Col xs={12} sm={6} md={4} lg={3}>
+              <img
+                src={`http://localhost:3333/${activeUser.image}`}
+                alt="Profile"
+                className="rounded-circle img-fluid"
+                height="90%"
+              />
+            </Col>
+
+            <Col>
+              <h1>Hello {activeUser.username}!</h1>
+              <h3>{question}</h3>
+            </Col>
+          </Row>
+          <UpdateMotto activeUser={activeUser} />
+        </Card>
+      )}
     </Container>
   );
 };
 
 export default UserProfile;
+
+{
+  /* <Container className="profile-container" activeUser={activeUser}>
+{activeUser && (
+  <Card className="profile-card">
+    <Row>
+      <Col xs={12} sm={6} sm={4} lg={3}>
+        <img
+          src={`http://localhost:3333/${activeUser.image}`}
+          alt="Profile"
+          className="rounded-circle img-fluid"
+          height="90%"
+        />
+      </Col>
+
+      <Col>
+        <h1>Hello {activeUser.username}!</h1>
+        <h3>{question}</h3>
+        <Row>
+          <Col sm={8} sm={9} lg={9}>
+            <br />
+            <br />
+            <br />
+
+            <h5>{activeUser.bio}</h5>
+          </Col>
+          <Col>
+            <br />
+            <br />
+            <UpdateMotto activeUser={activeUser} />
+          </Col>
+        </Row>
+      </Col>
+    </Row>
+  </Card>
+)}
+</Container> */
+}

@@ -2,8 +2,7 @@ import "../../App.css";
 
 import { useState, useEffect } from "react";
 
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import { Container, Button, Card, Row, Col, Image } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 
 import circle from "../../pictures/circle.png";
@@ -43,9 +42,23 @@ const Users = () => {
           users.map((user) => (
             <Card key={user._id} style={{ width: "18rem" }}>
               <Card.Body>
-                <Card.Title>{user.name}</Card.Title>
-                <Card.Text>{user.email}</Card.Text>
-                <Card.Text>{user.bio}</Card.Text>
+                <Row>
+                  <Col xs={12} sm={6} sm={4} lg={3}>
+                    <img
+                      src={`http://localhost:3333/${user.image}`}
+                      alt="Profile"
+                      className="rounded-circle img-fluid"
+                      height="90%"
+                    />
+                  </Col>
+
+                  <Col>
+                    <h1>Hello {user.username}!</h1>
+                    <br />
+                    <h5>Your Motto: {user.bio}</h5>
+                    <h6>Email: {user.email}</h6>
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           ))}

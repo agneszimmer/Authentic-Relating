@@ -42,17 +42,23 @@ const Users = () => {
           users.map((user) => (
             <Card key={user._id} style={{ width: "18rem" }}>
               <Card.Body>
-                <Col xs={4} lg={2} className="justify-content-md-center">
-                  <Image
-                    className="comment-picture"
-                    src="{user.image}"
-                    roundedCircle
-                    style={{ width: 100, radius: 50 }}
-                  />
-                </Col>
-                <Card.Title>{user.name}</Card.Title>
-                <Card.Text>{user.email}</Card.Text>
-                <Card.Text>{user.bio}</Card.Text>
+                <Row>
+                  <Col xs={12} sm={6} sm={4} lg={3}>
+                    <img
+                      src={`http://localhost:3333/${user.image}`}
+                      alt="Profile"
+                      className="rounded-circle img-fluid"
+                      height="90%"
+                    />
+                  </Col>
+
+                  <Col>
+                    <h1>Hello {user.username}!</h1>
+                    <br />
+                    <h5>Your Motto: {user.bio}</h5>
+                    <h6>Email: {user.email}</h6>
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           ))}

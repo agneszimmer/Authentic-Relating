@@ -7,20 +7,13 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Loading from "../Loading";
 
-const RegisterModal = (props) => {
+const UpdateUserData = (props) => {
+  /* 
   //ModalActions:
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //RegisterForm:
-  const {
-    isAuthenticated,
-    setIsAuthenticated,
-    setActiveUser,
-    error,
-    setError,
-  } = useContext(AuthContext);
   const [formState, setFormState] = useState({
     username: "",
     email: "",
@@ -62,28 +55,19 @@ const RegisterModal = (props) => {
   };
 
   if (isAuthenticated) return <Redirect to="/" />;
+  if (loading) return <Loading />;
 
   return (
-    <>
+    <div>
       <Button variant="link" onClick={handleShow} className="nav-link">
         Register
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="title">
-            Great that you want to register!
-          </Modal.Title>
+          <Modal.Title className="title">Update your User Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            Then you have access to all Authentic Relating Games, Sentence Stems
-            and much more on this Website.
-          </p>
-          <p>
-            You can save Games, Notes, create your own Authentic Relating Event
-            Scedule and connect to other people in the community.
-          </p>
           <div className="login">
             {error && (
               <div class="alert alert-danger" role="alert">
@@ -139,13 +123,16 @@ const RegisterModal = (props) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={onSubmit} variant="light" block>
+          <Button type="submit" onClick={onSubmit} className="btn btn-primary">
             Register
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
-  );
+    </div>
+  ); */
 };
 
-export default RegisterModal;
+export default UpdateUserData;

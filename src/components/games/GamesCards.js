@@ -9,13 +9,31 @@ const GamesCards = ({ games }) => {
       <Row>
         {games &&
           games.map((game) => (
-            <Col lg={3}>
+            <Col lg={3} md={4} sm={6}>
               <Card className="games-card" key={game._id}>
-                <Card.Body>
+                <Card.Header>
                   <h5>{game.title}</h5>
+                  <p>
+                    Players :{" "}
+                    {game.players_min === game.players_max
+                      ? game.players_min
+                      : `${game.players_min} - ${game.players_max}`}
+                  </p>
+                  <p>
+                    Time :{" "}
+                    {game.time_min === game.time_max
+                      ? game.time_min
+                      : `${game.time_min} - ${game.time_max}`}
+                    min{" "}
+                  </p>
+                </Card.Header>
+                <Card.Body>
                   <Card.Text>{game.teaser}</Card.Text>
                   <Link to={`/game/${game._id}`}>
-                    <Button variant="light">details</Button>
+                    <br />
+                    <Button block variant="light">
+                      details
+                    </Button>
                   </Link>
                 </Card.Body>
               </Card>

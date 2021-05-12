@@ -49,7 +49,12 @@ const SearchGames = () => {
       <Card className="search-card">
         <Card.Header className="search-card-header">
           <Link className="games-link" to="/games">
-            <h4 style={{ color: "black" }}>
+            <h4
+              style={{
+                color: "black",
+                fontWeight: "bold",
+              }}
+            >
               Check out all Authentic Relating Games
             </h4>
           </Link>

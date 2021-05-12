@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import AuthState from "./context/AuthContext";
 import App from "./App";
+import "dotenv/config.js";
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,4 +1,5 @@
 {
+  "0": "What have you learned this week that you found interesting? ",
   "1": "What are you passionate about?",
   "2": "What are you obsessed with right now?",
   "3": "What would be a perfect day look like for you?",
@@ -12,7 +13,7 @@
   "11": "Is there something you’ve dreamed of doing for a long time?",
   "12": "What do you value most in a friendship?",
   "13": "What’s your relationship to anger?",
-  "14": "What’s your favorite part of your body? Why?",
+  "14": "What is the number one reason that you think people want to hang out with you?",
   "15": "What is your most urgent priority for the rest of the year?",
   "16": "Who is the last person that deeply disappointed you? (What happened?)",
   "17": "What do you think happens after we die?",
@@ -23,5 +24,7 @@
   "22": "Are you living your life purpose?",
   "23": "Do you usually follow your head or follow your heart?",
   "24": "What makes you feel alive?",
-  "25": "What activity in your life makes you the most nervous?"
+  "25": "What activity in your life makes you the most nervous?",
+  "26": "Where & when do you get your best ideas?",
+  "27": "Do you have a friend from your past that you wish was still in your life?"
 }

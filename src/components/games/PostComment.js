@@ -67,6 +67,7 @@ const PostComment = ({ game, setComments }) => {
       {isAuthenticated ? (
         <>
           <Button
+            variant="light"
             onClick={() => setOpen(!open)}
             aria-controls="collapse-comment"
             aria-expanded={open}
@@ -86,18 +87,16 @@ const PostComment = ({ game, setComments }) => {
                 ></Form.Control>
               </Form>
               <br />
-              <Button
-                type="submit"
-                onClick={onSubmit}
-                className="btn btn-info pull-right"
-              >
+              <Button type="submit" onClick={onSubmit} variant="light" block>
                 Post
               </Button>
             </div>
           </Collapse>
         </>
       ) : (
-        <Button>Log in to share your experiences with {game.title}</Button>
+        <Button variant="secondary" block>
+          Log in to share your experiences with {game.title}
+        </Button>
       )}
     </Card>
   );

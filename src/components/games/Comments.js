@@ -15,7 +15,7 @@ const Comments = ({ game, comments, setComments }) => {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3333/comments/game/${game_id}`
+          `https://arg-api.herokuapp.com/comments/game/${game_id}`
         );
         const jsonData = await response.json();
         setComments(jsonData);
@@ -28,13 +28,32 @@ const Comments = ({ game, comments, setComments }) => {
     getComments();
   }, []);
 
+  if (loading) return <Loading />;
+
+  //display date
+  let date = new Date();
+
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    let month = newDate.getMonth() + 1;
+    let day = newDate.getDate();
+    let year = newDate.getFullYear() - 2000;
+    if (day < 10) {
+      day = "0" + day;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    return day + "." + month + "." + year;
+  };
+
   return (
     <Container className="comments-container fluid">
       {comments &&
         comments.map((comment) => (
           <Card className="comments-card" key={comment._id}>
             <Row className="align-items-center">
-              <Col xs={4} lg={2} className="justify-content-md-center">
+              <Col xs={4} sm={3} lg={2} className="justify-content-md-center">
                 <Image
                   className="comment-picture"
                   src={
@@ -48,8 +67,11 @@ const Comments = ({ game, comments, setComments }) => {
               </Col>
 
               <Col className="comment-text">
-                <Card.Text>{comment.author.username}</Card.Text>
-                <Card.Text>{comment.comment}</Card.Text>
+                <h5>
+                  {comment.author.username} wrote at {formatDate(comment.date)}
+                </h5>
+
+                <p>{comment.comment}</p>
               </Col>
             </Row>
           </Card>

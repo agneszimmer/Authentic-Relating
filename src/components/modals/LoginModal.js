@@ -103,7 +103,7 @@ const LoginModal = () => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={onSubmit} className="btn btn-success ">
+          <Button variant="light" block type="submit" onClick={onSubmit}>
             Login
           </Button>
         </Modal.Footer>

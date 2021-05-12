@@ -11,12 +11,10 @@
 
 .profile-card {
   position: fixed;
-  width: 80%;
   margin: 5rem;
-  padding: 3rem;
+  padding: 2rem;
   top: 4rem;
 
-  bottom: 30%;
   background-color: rgba(99, 99, 99, 0.5);
   z-index: 100;
 }

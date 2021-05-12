@@ -1,8 +1,9 @@
 import "../../css/Games.css";
 import { useEffect, useState } from "react";
-import { Container, Button, Card, CardDeck } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container } from "react-bootstrap";
+
 import Loading from "../Loading";
+import GamesCards from "./GamesCards.js";
 
 const Games = () => {
   const [games, setGames] = useState([]);
@@ -36,22 +37,7 @@ const Games = () => {
 
   return (
     <Container className="all-games-container">
-      {games &&
-        games.map((game) => (
-          <CardDeck>
-            <Card className="mb-3 text-center games-card" key={game._id}>
-              <Card.Header>
-                <h5>{game.title}</h5>
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>{game.teaser}</Card.Text>
-                <Link to={`/game/${game._id}`}>
-                  <Button variant="light">details</Button>
-                </Link>
-              </Card.Body>
-            </Card>
-          </CardDeck>
-        ))}
+      <GamesCards games={games} />
     </Container>
   );
 };

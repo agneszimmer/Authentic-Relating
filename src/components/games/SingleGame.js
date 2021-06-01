@@ -5,11 +5,13 @@ import { Card, Container, Col, Row } from "react-bootstrap";
 import Loading from "../Loading";
 import PostComment from "./PostComment";
 import Comments from "./Comments";
+import PostNote from "./PostNote";
 
 const SingleGame = () => {
   const { game_id } = useParams();
   const [game, setGame] = useState();
   const [comments, setComments] = useState([]);
+  const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
 
@@ -65,10 +67,14 @@ const SingleGame = () => {
               <p>{game.occasion}</p> */}
                   <h5>Directions:</h5>
                   <p>{game.description}</p>
+                  <br />
                   {game.variations && <h5>Variations:</h5>}
                   <p>{game.variations}</p>
+
+                  <PostNote game={game} />
                 </Col>
-                <Col xs={12} sm={6} md={5} lg={4}>
+                <Col xs={12} sm={12} md={6} lg={4}>
+                  <br />
                   <img
                     className="imageGame"
                     src={`http://localhost:3333/${game.image}`}
@@ -77,9 +83,10 @@ const SingleGame = () => {
                 </Col>
               </Row>
             </Card.Body>
+          </Card>
+          <Card className="single-game-card">
             <PostComment game={game} setComments={setComments} />
           </Card>
-
           <Comments game={game} comments={comments} setComments={setComments} />
         </Container>
       )}

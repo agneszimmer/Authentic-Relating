@@ -72,6 +72,10 @@ const Comments = ({ game, comments, setComments }) => {
                 </h5>
 
                 <p>{comment.comment}</p>
+                <br />
+                <p>
+                  <em>{comment.author.bio}</em>{" "}
+                </p>
               </Col>
             </Row>
           </Card>

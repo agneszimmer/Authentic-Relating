@@ -17,10 +17,9 @@ const GamesCards = ({ games }) => {
                     Players :{" "}
                     {game.players_min === game.players_max
                       ? game.players_min
-                      : `${game.players_min} - ${game.players_max}`}
-                  </p>
-                  <p>
-                    Time :{" "}
+                      : `${game.players_min} - ${game.players_max}`}{" "}
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; Time :{" "}
                     {game.time_min === game.time_max
                       ? game.time_min
                       : `${game.time_min} - ${game.time_max}`}

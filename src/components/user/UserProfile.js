@@ -6,6 +6,7 @@ import Loading from "../Loading";
 import UpdateMotto from "./UpdateMotto";
 import UpdateUserData from "./UpdateUserData";
 import questionsArray from "../../questionsKeys.json";
+import MyGames from "../games/MyGames.js";
 
 const UserProfile = () => {
   const { activeUser, error, loading, setError } = useContext(AuthContext);
@@ -30,24 +31,37 @@ const UserProfile = () => {
   return (
     <Container className="profile-container" activeUser={activeUser}>
       {activeUser && (
-        <Card className="profile-card">
-          <Row>
-            <Col xs={12} sm={6} md={4} lg={3}>
-              <img
-                src={`http://localhost:3333/${activeUser.image}`}
-                alt="Profile"
-                className="rounded-circle img-fluid"
-                height="90%"
-              />
-            </Col>
+        <>
+          <Card className="profile-card">
+            <Row>
+              <Col xs={12} sm={6} md={4} lg={4}>
+                <img
+                  src={`http://localhost:3333/${activeUser.image}`}
+                  alt="Profile"
+                  className="rounded-circle img-fluid"
+                  height="90%"
+                />
+              </Col>
 
-            <Col>
-              <h1>Hello {activeUser.username}!</h1>
-              <h3>{question}</h3>
-            </Col>
-          </Row>
-          <UpdateMotto activeUser={activeUser} />
-        </Card>
+              <Col>
+                <br />
+                <br />
+                <h1>Hello {activeUser.username}!</h1>
+                <br />
+                <h2>{question}</h2>
+              </Col>
+            </Row>
+            <UpdateMotto activeUser={activeUser} />
+          </Card>
+          <Card className="profile-card">
+            <Row>
+              <Col>
+                <h1>Your collected Authentic Relating Games</h1>
+              </Col>
+            </Row>
+            <MyGames />
+          </Card>
+        </>
       )}
     </Container>
   );

@@ -50,7 +50,7 @@ const UpdateMotto = ({ activeUser }) => {
     <>
       <Row style={{ marginTop: "2rem" }}>
         <Col style={{ textAlign: "center" }}>
-          <h5>{activeUser.bio}</h5>
+          <h4>{activeUser.bio}</h4>
         </Col>
 
         <Col xs={12} sm={4} md={3} lg={2}>

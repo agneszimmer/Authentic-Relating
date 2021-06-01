@@ -1,27 +1,22 @@
 import "../../css/Games.css";
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Loading from "../Loading.js";
 import { AuthContext } from "../../context/AuthContext";
-import { Card, Button, Form, Collapse, Fade } from "react-bootstrap";
+import { Card, Button, Form, Collapse, Row, Col } from "react-bootstrap";
 
-const PostComment = ({ game, setComments }) => {
+const PostNote = ({ game, setNotes }) => {
   const [open, setOpen] = useState(false);
 
-  const {
-    isAuthenticated,
-    activeUser,
-    loading,
-    setLoading,
-    error,
-    setError,
-  } = useContext(AuthContext);
+  const { activeUser, loading, setLoading, error, setError } = useContext(
+    AuthContext
+  );
 
   const [formState, setFormState] = useState({
     author: "",
     game_ref: "",
-    comment: "",
+    note: "",
   });
-  const { comment } = formState;
+  const { note } = formState;
 
   const onChange = (e) => {
     setFormState({
@@ -34,24 +29,24 @@ const PostComment = ({ game, setComments }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    for (const field in formState) {
+    /*  for (const field in formState) {
       if (!formState[field])
         return alert("please write something before you submit");
-    }
+    } */
 
     try {
-      const res = await fetch("http://localhost:3333/comments", {
+      const res = await fetch("http://localhost:3333/notes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-      const { newComment, error } = await res.json();
-      console.log(newComment);
-      setComments((prev) => [newComment, ...prev]);
+      const { newNote, error } = await res.json();
+      console.log(newNote);
+      setNotes((prev) => [newNote, ...prev]);
       setFormState({
         author: "",
         game_ref: "",
-        comment: "",
+        note: "",
       });
       setError(error);
     } catch (error) {
@@ -63,25 +58,31 @@ const PostComment = ({ game, setComments }) => {
   if (error) console.log(error);
 
   return (
-    <Card className="comment-card">
-      {isAuthenticated ? (
-        <>
+    <Card className="note-card">
+      <Row>
+        <Col>
+          <Button type="submit" variant="light" onClick={onSubmit} block>
+            Save Game without Note
+          </Button>
+        </Col>
+        <Col>
           <Button
             variant="light"
             onClick={() => setOpen(!open)}
-            aria-controls="collapse-comment"
+            aria-controls="collapse-note"
             aria-expanded={open}
+            block
           >
-            Share your experiences with {game.title}
+            Save your notes on {game.title}
           </Button>
           <Collapse in={open}>
-            <div id="collapse-comment">
+            <div id="collapse-note">
               <Form onSubmit={onSubmit}>
                 <Form.Control
                   type="textarea"
-                  name="comment"
-                  value={comment}
-                  placeholder="write a comment..."
+                  name="note"
+                  value={note}
+                  placeholder="write a note..."
                   rows="5"
                   onChange={onChange}
                 ></Form.Control>
@@ -92,14 +93,10 @@ const PostComment = ({ game, setComments }) => {
               </Button>
             </div>
           </Collapse>
-        </>
-      ) : (
-        <Button variant="secondary" block>
-          Log in to share your experiences with {game.title}
-        </Button>
-      )}
+        </Col>
+      </Row>
     </Card>
   );
 };
 
-export default PostComment;
+export default PostNote;
